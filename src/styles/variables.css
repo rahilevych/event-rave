@@ -1,0 +1,24 @@
+:root {
+  /* colors */
+  --color-background: #f8f8fa;
+  --color-primary-dark: #10107b;
+  --color-primary-light: #7848f4;
+
+  /* buttons */
+  --border-radius-btn: 5px;
+  --color-btn-dark: var(--color-primary-light);
+  --color-btn-text: var(--color-text-light);
+  --color-btn-text-dark: var(--color-text-dark);
+  /* fonts */
+  --font-family-base: "Inter", sans-serif;
+  --font-weight: 400;
+
+  /* text */
+  --color-text-light: white;
+  --color-text-dark: black;
+  --color-text-accent: var(--color-primary-light);
+
+  /* margins */
+
+  --height-header: 130px;
+}
