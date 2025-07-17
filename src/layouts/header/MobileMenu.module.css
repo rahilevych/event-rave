@@ -1,0 +1,19 @@
+.menu {
+  position: relative;
+}
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+}
+.openIcon,
+.closeIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-primary-light);
+}
