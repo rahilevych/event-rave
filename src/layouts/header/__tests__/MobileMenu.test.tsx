@@ -27,4 +27,14 @@ describe("MobileMenu", () => {
       expect(screen.getByTestId("person-icon")).toBeInTheDocument();
     });
   });
+  test("should close menu if user click outside", async () => {
+    render(<MobileMenu />);
+    await user.click(screen.getByTestId("person-icon"));
+    await user.pointer([
+      { target: screen.getByTestId("mobile-menu"), keys: "[MouseLeft]" },
+    ]);
+    expect(screen.getByTestId("close-icon")).toBeInTheDocument();
+    await user.pointer([{ target: document.body, keys: "[MouseLeft]" }]);
+    expect(screen.getByTestId("person-icon")).toBeInTheDocument();
+  });
 });
