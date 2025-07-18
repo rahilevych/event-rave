@@ -8,7 +8,7 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.content}>
-        <div className={styles.logo}>
+        <div data-testid="logo" className={styles.logo}>
           <span>Event</span>
           <span>Rave</span>
         </div>
