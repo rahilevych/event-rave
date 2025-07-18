@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { MobileDropdown } from "./MobileDropdown";
 import { MdClose, MdPerson } from "react-icons/md";
 import styles from "./MobileMenu.module.css";
 import { AnimatePresence, motion } from "motion/react";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 export const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
+  useClickOutside(dropdownRef, () => setIsOpen(false), isOpen);
   return (
-    <div className={styles.menu}>
+    <div ref={dropdownRef} className={styles.menu}>
       <AnimatePresence>
         {isOpen && (
           <motion.div

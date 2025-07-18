@@ -9,6 +9,8 @@
   width: 100%;
   padding: 10px;
   border-radius: var(--border-radius-btn);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 .list li {
   width: 100%;
