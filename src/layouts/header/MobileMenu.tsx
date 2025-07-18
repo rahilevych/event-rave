@@ -11,7 +11,7 @@ export const MobileMenu = () => {
 
   useClickOutside(dropdownRef, () => setIsOpen(false), isOpen);
   return (
-    <div ref={dropdownRef} className={styles.menu}>
+    <div data-testid="mobile-menu" ref={dropdownRef} className={styles.menu}>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -27,9 +27,14 @@ export const MobileMenu = () => {
       </AnimatePresence>
 
       {!isOpen ? (
-        <MdPerson onClick={() => setIsOpen(true)} className={styles.openIcon} />
+        <MdPerson
+          data-testid="person-icon"
+          onClick={() => setIsOpen(true)}
+          className={styles.openIcon}
+        />
       ) : (
         <MdClose
+          data-testid="close-icon"
           className={styles.closeIcon}
           onClick={() => setIsOpen(false)}
         />
