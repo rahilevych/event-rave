@@ -5,7 +5,7 @@
   --color-primary-light: #7848f4;
 
   /* buttons */
-  --border-radius-btn: 5px;
+  --border-radius: 5px;
   --color-btn-dark: var(--color-primary-light);
   --color-btn-text: var(--color-text-light);
   --color-btn-text-dark: var(--color-text-dark);
