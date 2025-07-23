@@ -3,6 +3,7 @@
   --color-background: #f8f8fa;
   --color-primary-dark: #10107b;
   --color-primary-light: #7848f4;
+  --color-primary-light-hover: #3a3aad;
 
   /* buttons */
   --border-radius: 5px;
@@ -10,7 +11,7 @@
   --color-btn-text: var(--color-text-light);
   --color-btn-text-dark: var(--color-text-dark);
   /* fonts */
-  --font-family-base: "Inter", sans-serif;
+  --font-family-base: 'Inter', sans-serif;
   --font-weight: 400;
 
   /* text */
