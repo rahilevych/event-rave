@@ -2,6 +2,6 @@
   width: 130px;
   height: 50px;
   background-color: var(--color-btn-dark);
-  border-radius: var(--border-radius-btn);
+  border-radius: var(--border-radius);
   cursor: pointer;
 }
