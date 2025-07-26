@@ -26,6 +26,11 @@
 .logo > span:last-child {
   color: var(--color-text-accent);
 }
+.signup,
+.login {
+  width: 130px;
+  height: 50px;
+}
 .login {
   background-color: transparent;
   color: var(--color-btn-text-dark);

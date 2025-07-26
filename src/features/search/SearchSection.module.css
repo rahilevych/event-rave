@@ -42,6 +42,7 @@
   height: auto;
   gap: 30px;
   background-color: var(--color-btn-dark);
+
   border-radius: var(--border-radius);
 }
 @media (max-width: 1440px) {

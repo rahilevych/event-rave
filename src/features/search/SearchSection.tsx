@@ -3,6 +3,7 @@ import styles from './SearchSection.module.css';
 import { Dropdown } from './ui/dropdown/Dropdown';
 import { FaSearch } from 'react-icons/fa';
 import { dates, eventTypes, locations } from './data/data';
+import { Button } from '../../components/ui/Button/Button';
 
 export const SearchSection = () => {
   const [searchParams, setSearchParams] = useState({
@@ -48,9 +49,9 @@ export const SearchSection = () => {
             />
           </div>
         </div>
-        <button className={styles.button}>
+        <Button className={styles.button}>
           Search <FaSearch />
-        </button>
+        </Button>
       </div>
     </section>
   );

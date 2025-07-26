@@ -1,7 +1,7 @@
-import { Button } from "../../components/ui/Button/Button";
-import { useWindowSize } from "../../hooks/useWindowSize";
-import styles from "./Header.module.css";
-import { MobileMenu } from "./MobileMenu";
+import { Button } from '../../components/ui/Button/Button';
+import { useWindowSize } from '../../hooks/useWindowSize';
+import styles from './Header.module.css';
+import { MobileMenu } from './MobileMenu';
 export const Header = () => {
   const { width } = useWindowSize();
   const isMobile = width < 768;
@@ -17,7 +17,7 @@ export const Header = () => {
         ) : (
           <div className={styles.buttons}>
             <Button className={styles.login}>Log in</Button>
-            <Button> Sign up</Button>
+            <Button className={styles.signup}> Sign up</Button>
           </div>
         )}
       </div>
