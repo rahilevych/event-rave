@@ -7,12 +7,14 @@ type DropdownProps = {
   items: string[];
   label?: string;
   onSelect: (item: string) => void;
+  className?: string;
 };
 
 export const Dropdown = ({
   items,
   label = 'Select',
   onSelect,
+  className,
 }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -38,7 +40,7 @@ export const Dropdown = ({
 
   return (
     <div
-      className={`${styles.dropdown} ${isOpen ? styles.pressed : ''} `}
+      className={`${styles.dropdown} ${isOpen ? styles.pressed : ''} ${className || ''}`}
       ref={dropdownRef}
     >
       <button

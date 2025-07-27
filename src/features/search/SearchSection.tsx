@@ -29,12 +29,14 @@ export const SearchSection = () => {
             <Dropdown
               items={eventTypes}
               label={searchParams.type}
+              className={styles.dropdown}
               onSelect={(value) => handleDropdownChange('type', value)}
             />
           </div>
           <div className={styles.params}>
             <span>Location</span>{' '}
             <Dropdown
+              className={styles.dropdown}
               items={locations}
               label={searchParams.location}
               onSelect={(value) => handleDropdownChange('location', value)}
@@ -43,6 +45,7 @@ export const SearchSection = () => {
           <div className={styles.params}>
             <span>When</span>{' '}
             <Dropdown
+              className={styles.dropdown}
               items={dates}
               label={searchParams.date}
               onSelect={(value) => handleDropdownChange('date', value)}
