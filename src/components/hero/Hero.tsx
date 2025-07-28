@@ -1,5 +1,5 @@
-import { SearchSection } from "../../features/search/SearchSection";
-import styles from "./Hero.module.css";
+import { SearchSection } from '../../features/search/SearchSection';
+import styles from './Hero.module.css';
 
 export const Hero = () => {
   return (
