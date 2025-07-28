@@ -6,7 +6,7 @@ type EventCardProps = {
 };
 export const EventCard = ({ card }: EventCardProps) => {
   return (
-    <div className={styles.card}>
+    <div className={styles.card} data-testid="event-card">
       <div className={styles.img}>
         <img src={card.image} alt="event" />
       </div>

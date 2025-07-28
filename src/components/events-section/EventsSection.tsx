@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Title } from '../ui/title/Title';
 import styles from './EventSection.module.css';
-import { Dropdown } from '../../features/search/ui/dropdown/Dropdown';
+import { Dropdown } from '../ui/dropdown/Dropdown';
 import { category, days, events, types } from '../data/events';
 import { EventCard } from './EventCard';
 
@@ -46,12 +46,17 @@ export const EventsSection = () => {
         </div>
       </header>
       <main>
-        <div className={styles.cards}>
-          {' '}
-          {events.map((event, index) => (
-            <EventCard card={event} key={index} />
-          ))}
-        </div>
+        {events === null ? (
+          <p>Something went wrong. Try again later !</p>
+        ) : events.length === 0 ? (
+          <p>There are no events</p>
+        ) : (
+          <div className={styles.cards}>
+            {events.map((event, index) => (
+              <EventCard card={event} key={index} />
+            ))}
+          </div>
+        )}
       </main>
     </div>
   );
