@@ -1,6 +1,8 @@
 :root {
   /* colors */
-  --color-background: #f8f8fa;
+  --color-background: #f0f0f0;
+  --color-background-nav: #e5e5e5;
+  --color-background-ui: white;
   --color-primary-dark: #10107b;
   --color-primary-light: #7848f4;
   --color-primary-light-hover: #3a3aad;
@@ -18,8 +20,13 @@
   --color-text-light: white;
   --color-text-dark: black;
   --color-text-accent: var(--color-primary-light);
+  --color-text-accent-light: #7e7e7e;
 
   /* margins */
 
-  --height-header: 130px;
+  --height-header: 100px;
+
+  /*elements*/
+  --border-radius-block: 10px;
+  --border-radius-img: var(--border-radius);
 }
