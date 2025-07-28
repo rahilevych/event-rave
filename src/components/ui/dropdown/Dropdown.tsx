@@ -40,6 +40,7 @@ export const Dropdown = ({
 
   return (
     <div
+      data-testid="dropdown"
       className={`${styles.dropdown} ${isOpen ? styles.pressed : ''} ${className || ''}`}
       ref={dropdownRef}
     >

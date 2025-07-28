@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './SearchSection.module.css';
-import { Dropdown } from './ui/dropdown/Dropdown';
+import { Dropdown } from '../../components/ui/dropdown/Dropdown';
 import { FaSearch } from 'react-icons/fa';
 import { dates, eventTypes, locations } from './data/data';
 import { Button } from '../../components/ui/Button/Button';

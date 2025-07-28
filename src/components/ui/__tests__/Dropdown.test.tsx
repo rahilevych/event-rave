@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Dropdown } from '../ui/dropdown/Dropdown';
+import { Dropdown } from '../../../components/ui/dropdown/Dropdown';
 import userEvent from '@testing-library/user-event';
 
 describe('Dropdown', () => {
