@@ -3,6 +3,7 @@
   margin-bottom: 100px;
 }
 .header {
+  position: relative;
   width: 100%;
   display: flex;
   align-items: flex-start;
@@ -10,6 +11,8 @@
   gap: 30px;
 }
 .dropdowns {
+  position: absolute;
+  right: 0;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -19,9 +22,14 @@
   padding: 10px;
 }
 .dropdown > button {
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-background-ui);
+  color: var(--color-primary-dark);
   padding: 10px;
   width: 180px;
+}
+.dropdown > .list {
+  background-color: var(--color-background-ui);
+  color: var(--color-primary-dark);
 }
 .cards {
   display: flex;
@@ -36,6 +44,16 @@
     flex-direction: column;
     gap: 20px;
   }
+  .dropdowns {
+    top: 100%;
+  }
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+  }
 }
 @media (max-width: 768px) {
   .events {
@@ -44,6 +62,9 @@
   .dropdowns {
     flex-wrap: wrap;
     justify-content: center;
+  }
+  .cards {
+    margin-top: 200px;
   }
 }
 @media (max-width: 425px) {
