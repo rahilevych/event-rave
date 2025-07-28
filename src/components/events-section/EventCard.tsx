@@ -8,7 +8,7 @@ export const EventCard = ({ card }: EventCardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.img}>
-        <img src={card.image} alt="" />
+        <img src={card.image} alt="event" />
       </div>
       <div className={styles.info}>
         <p className={styles.title}>{card.title}</p>
