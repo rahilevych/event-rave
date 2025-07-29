@@ -7,5 +7,5 @@ interface ProtectedRoutes {
 }
 export const ProtectedRoute = ({ children }: ProtectedRoutes) => {
   const { isAuthenticated } = useAuth();
-  return isAuthenticated ? { children } : <Navigate to="login" />;
+  return isAuthenticated ? <>{children} </> : <Navigate to="login" />;
 };
