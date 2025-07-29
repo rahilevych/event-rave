@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Title } from '../ui/title/Title';
+
 import styles from './EventSection.module.css';
-import { Dropdown } from '../ui/dropdown/Dropdown';
+
 import { category, days, events, types } from '../data/events';
 import { EventCard } from './EventCard';
+import { Title } from '../../../../shared/ui/title/Title';
+import { Dropdown } from '../../../../shared/ui/dropdown/Dropdown';
 
 export const EventsSection = () => {
   const title = 'Upcoming events';

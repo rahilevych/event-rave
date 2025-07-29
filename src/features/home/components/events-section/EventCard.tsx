@@ -1,5 +1,5 @@
+import { Event } from '../../../../shared/types/types';
 import styles from './EventCard.module.css';
-import { Event } from '../../types/types';
 
 type EventCardProps = {
   card: Event;

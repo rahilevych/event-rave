@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
-import { MobileDropdown } from "./MobileDropdown";
-import { MdClose, MdPerson } from "react-icons/md";
-import styles from "./MobileMenu.module.css";
-import { AnimatePresence, motion } from "motion/react";
-import { useClickOutside } from "../../hooks/useClickOutside";
+import { useRef, useState } from 'react';
+import { MobileDropdown } from './MobileDropdown';
+import { MdClose, MdPerson } from 'react-icons/md';
+import styles from './MobileMenu.module.css';
+import { AnimatePresence, motion } from 'motion/react';
+import { useClickOutside } from '../../shared/hooks/useClickOutside';
 
 export const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
