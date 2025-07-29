@@ -1,5 +1,5 @@
-import { Button } from '../../components/ui/Button/Button';
-import { useWindowSize } from '../../hooks/useWindowSize';
+import { useWindowSize } from '../../shared/hooks/useWindowSize';
+import { Button } from '../../shared/ui/Button/Button';
 import styles from './Header.module.css';
 import { MobileMenu } from './MobileMenu';
 export const Header = () => {

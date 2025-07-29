@@ -1,4 +1,4 @@
-import { SearchSection } from '../../features/search/SearchSection';
+import { SearchSection } from '../../../search/SearchSection';
 import styles from './Hero.module.css';
 
 export const Hero = () => {
