@@ -1,0 +1,32 @@
+:root {
+  /* colors */
+  --color-background: #f0f0f0;
+  --color-background-nav: #e5e5e5;
+  --color-background-ui: white;
+  --color-primary-dark: #10107b;
+  --color-primary-light: #7848f4;
+  --color-primary-light-hover: #3a3aad;
+
+  /* buttons */
+  --border-radius: 5px;
+  --color-btn-dark: var(--color-primary-light);
+  --color-btn-text: var(--color-text-light);
+  --color-btn-text-dark: var(--color-text-dark);
+  /* fonts */
+  --font-family-base: 'Inter', sans-serif;
+  --font-weight: 400;
+
+  /* text */
+  --color-text-light: white;
+  --color-text-dark: black;
+  --color-text-accent: var(--color-primary-light);
+  --color-text-accent-light: #7e7e7e;
+
+  /* margins */
+
+  --height-header: 100px;
+
+  /*elements*/
+  --border-radius-block: 10px;
+  --border-radius-img: var(--border-radius);
+}

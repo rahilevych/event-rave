@@ -1,0 +1,5 @@
+.btn {
+  background-color: var(--color-btn-dark);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}

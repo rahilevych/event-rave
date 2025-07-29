@@ -1,0 +1,20 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 10px;
+  background-color: var(--color-primary-light);
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--border-radius-btn);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.list li {
+  width: 100%;
+  text-align: center;
+  color: var(--color-text-light);
+  cursor: pointer;
+}
