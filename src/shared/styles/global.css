@@ -48,6 +48,14 @@ input {
   box-sizing: border-box;
   max-width: 1440px;
 }
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main {
+  flex: 1;
+}
 
 @media (max-width: 768px) {
   body {
