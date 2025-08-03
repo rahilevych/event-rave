@@ -1,4 +1,53 @@
 .form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  gap: 20px;
+}
+.form > label {
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  width: 70%;
+  gap: 10px;
+  color: var(--color-primary-dark);
+}
+.form > label > p:last-child {
+  color: var(--color-error);
+}
+
+.form > label > input {
+  height: 50px;
+  width: 100%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: var(--border-radius);
+  padding: 10px 15px;
+  color: var(--color-primary-dark);
+  border: 1px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+.form > label > input:focus {
+  border: 1px solid var(--color-primary-dark);
+}
+.button {
+  width: 250px;
+  height: 50px;
+  margin-top: 20px;
+}
+.buttons > .button:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--color-background-ui);
+  color: var(--color-primary-dark);
+  border: 1px solid var(--color-primary-dark);
+  font-size: 16px;
 }

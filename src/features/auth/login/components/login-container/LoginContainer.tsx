@@ -10,6 +10,8 @@ export const LoginContainer = () => {
       </header>
       <main>
         <div className={styles.container}>
+          <h2>Sign in</h2>
+          <p>Welcome back! Please enter your details</p>
           <LoginForm />
         </div>
       </main>

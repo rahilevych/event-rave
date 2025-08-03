@@ -3,6 +3,7 @@ import styles from './LoginForm.module.css';
 import { LoginData, loginSchema } from './schema/loginSchema';
 import { useForm } from 'react-hook-form';
 import { Button } from '../../../../../shared/ui/Button/Button';
+import { FcGoogle } from 'react-icons/fc';
 
 export const LoginForm = () => {
   const {
@@ -20,14 +21,33 @@ export const LoginForm = () => {
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      {' '}
-      <input {...register('email')} placeholder="Email" />
-      {errors.email && <p>{errors.email.message}</p>}
-      <input {...register('password')} type="password" placeholder="Password" />
-      {errors.password && <p>{errors.password.message}</p>}
-      <Button className={styles.button} type="submit" disabled={isSubmitting}>
-        Sign in
-      </Button>
+      <label>
+        <p>Email:</p>
+        <input
+          {...register('email')}
+          placeholder="Email"
+          className={styles.input}
+        />
+        {errors.email && <p>{errors.email.message}</p>}
+      </label>
+      <label>
+        <p>Password:</p>
+        <input
+          {...register('password')}
+          type="password"
+          placeholder="Password"
+          className={styles.input}
+        />
+        {errors.password && <p>{errors.password.message}</p>}
+      </label>
+      <div className={styles.buttons}>
+        <Button className={styles.button} type="submit" disabled={isSubmitting}>
+          Sign in
+        </Button>
+        <Button className={styles.button} type="submit" disabled={isSubmitting}>
+          <FcGoogle /> Sign in with Google
+        </Button>
+      </div>
     </form>
   );
 };
