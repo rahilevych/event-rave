@@ -4,8 +4,13 @@
   --color-background-nav: #e5e5e5;
   --color-background-ui: white;
   --color-primary-dark: #10107b;
-  --color-primary-light: #7848f4;
+  --color-primary-light: #675de7;
   --color-primary-light-hover: #3a3aad;
+
+  --color-success: #3aa97b;
+  /* --color-success-light: #e0f4ec; */
+  --color-error: #d3455b;
+  /* --color-error-light: #fbecee; */
 
   /* buttons */
   --border-radius: 5px;
