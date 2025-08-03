@@ -3,8 +3,9 @@
   align-items: center;
   justify-content: space-between;
   font-size: 40px;
-  width: 200px;
-  gap: 0.5rem;
+  width: fit-content;
+  gap: 10px;
+  color: var(--color-primary-dark);
 }
 .logo > span:last-child {
   color: var(--color-text-accent);

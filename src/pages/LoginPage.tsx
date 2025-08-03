@@ -2,7 +2,7 @@ import { LoginContainer } from '../features/auth/login/components/login-containe
 
 export const LoginPage = () => {
   return (
-    <div>
+    <div className="container">
       <main>
         <LoginContainer />
       </main>
