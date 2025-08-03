@@ -1,6 +1,5 @@
 import { useWindowSize } from '../../shared/hooks/useWindowSize';
 import { Button } from '../../shared/ui/Button/Button';
-import { Logo } from '../../shared/ui/logo/Logo';
 import styles from './Header.module.css';
 import { MobileMenu } from './MobileMenu';
 export const Header = () => {
@@ -9,7 +8,10 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.content}>
-        <Logo />
+        <div data-testid="logo" className={styles.logo}>
+          <span>Event</span>
+          <span>Rave</span>
+        </div>
         {isMobile ? (
           <MobileMenu />
         ) : (

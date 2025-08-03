@@ -15,7 +15,17 @@
   max-width: 1440px;
   margin: 0 auto;
 }
-
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 40px;
+  width: auto;
+  gap: 0.5rem;
+}
+.logo > span:last-child {
+  color: var(--color-text-accent);
+}
 .signup,
 .login {
   width: 130px;
@@ -31,4 +41,10 @@
   align-items: center;
   gap: 0.25rem;
   width: auto;
+}
+
+@media (max-width: 425px) {
+  .logo {
+    font-size: 24px;
+  }
 }

@@ -5,15 +5,13 @@ import { Footer } from '../layouts/footer/Footer';
 import { Header } from '../layouts/header/Header';
 import { useWindowSize } from '../shared/hooks/useWindowSize';
 
-import styles from '../features/home/styles/HomePage.module.css';
-
 export const HomePage = () => {
   const { width } = useWindowSize();
   const isMobile = width <= 768;
   return (
-    <div className={styles.wrapper}>
+    <div className="wrapper">
       <Header />
-      <main className={styles.main}>
+      <main className="main">
         {isMobile ? <SearchSection /> : <Hero />}
         <EventsSection />
       </main>
