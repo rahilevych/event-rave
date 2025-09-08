@@ -51,3 +51,12 @@
   border: 1px solid var(--color-primary-dark);
   font-size: 16px;
 }
+
+@media (max-width: 425px) {
+  .form > label > input {
+    width: 250px;
+  }
+  .form > label {
+    align-items: center;
+  }
+}
