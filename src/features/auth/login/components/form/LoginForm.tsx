@@ -20,7 +20,11 @@ export const LoginForm = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <form
+      data-testid="signin-form"
+      onSubmit={handleSubmit(onSubmit)}
+      className={styles.form}
+    >
       <label>
         <p>Email:</p>
         <input
