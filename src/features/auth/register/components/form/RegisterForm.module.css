@@ -28,13 +28,7 @@
   color: var(--color-primary-dark);
   border: 1px solid var(--color-primary-dark);
   font-size: 16px;
-  margin-bottom: 20px;
 }
-@media (max-width: 425px) {
-  .label > input {
-    width: 250px;
-  }
-  .label {
-    align-items: center;
-  }
+.buttons > p {
+  margin: 10px 0;
 }

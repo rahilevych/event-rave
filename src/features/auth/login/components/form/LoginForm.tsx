@@ -4,6 +4,8 @@ import { LoginData, loginSchema } from './schema/loginSchema';
 import { useForm } from 'react-hook-form';
 import { Button } from '../../../../../shared/ui/Button/Button';
 import { FcGoogle } from 'react-icons/fc';
+import { Link } from 'react-router-dom';
+import { FormField } from '../../../../../shared/ui/form-field/FormField';
 
 export const LoginForm = () => {
   const {
@@ -20,26 +22,25 @@ export const LoginForm = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <label>
-        <p>Email:</p>
-        <input
-          {...register('email')}
-          placeholder="Email"
-          className={styles.input}
-        />
-        {errors.email && <p>{errors.email.message}</p>}
-      </label>
-      <label>
-        <p>Password:</p>
-        <input
-          {...register('password')}
-          type="password"
-          placeholder="Password"
-          className={styles.input}
-        />
-        {errors.password && <p>{errors.password.message}</p>}
-      </label>
+    <form
+      data-testid="signin-form"
+      onSubmit={handleSubmit(onSubmit)}
+      className={styles.form}
+    >
+      <FormField
+        label="Email:"
+        register={register('email')}
+        placeholder="Email"
+        error={errors.email}
+      />
+      <FormField
+        label="Password:"
+        register={register('password')}
+        type="password"
+        placeholder="Password"
+        error={errors.password}
+      />
+
       <div className={styles.buttons}>
         <Button className={styles.button} type="submit" disabled={isSubmitting}>
           Sign in
@@ -47,6 +48,10 @@ export const LoginForm = () => {
         <Button className={styles.button} type="submit" disabled={isSubmitting}>
           <FcGoogle /> Sign in with Google
         </Button>
+        <p>or</p>
+        <p>
+          Don't have an account? <Link to="/registration">Sign up</Link>
+        </p>
       </div>
     </form>
   );
