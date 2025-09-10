@@ -3,12 +3,15 @@ import { HomePage } from '../../pages/HomePage';
 import { LoginPage } from '../../pages/LoginPage';
 import { ProtectedRoute } from './ProtectedRoute';
 import { Profile } from '../../pages/Profile';
+import { RegistrationPage } from '../../pages/RegistrationPage';
 
 export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />}></Route>
       <Route path="login" element={<LoginPage />}></Route>
+      <Route path="registration" element={<RegistrationPage />}></Route>
+
       <Route
         path="profile"
         element={
