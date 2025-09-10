@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useWindowSize } from '../../shared/hooks/useWindowSize';
 import { Button } from '../../shared/ui/Button/Button';
 import styles from './Header.module.css';
@@ -16,8 +17,13 @@ export const Header = () => {
           <MobileMenu />
         ) : (
           <div className={styles.buttons}>
-            <Button className={styles.login}>Log in</Button>
-            <Button className={styles.signup}> Sign up</Button>
+            <Link to="login">
+              <Button className={styles.login}>Log in</Button>
+            </Link>
+            <Link to="registration">
+              {' '}
+              <Button className={styles.signup}> Sign up</Button>
+            </Link>
           </div>
         )}
       </div>
