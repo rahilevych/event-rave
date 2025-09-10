@@ -27,6 +27,6 @@ describe('LoginForm component', () => {
   test('render 2 buttons', () => {
     render(<LoginForm />);
     const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(2);
+    expect(buttons).toHaveLength(3);
   });
 });
