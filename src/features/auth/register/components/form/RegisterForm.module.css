@@ -32,12 +32,3 @@
 .buttons > p {
   margin: 10px 0;
 }
-
-@media (max-width: 425px) {
-  .form > label > input {
-    width: 250px;
-  }
-  .form > label {
-    align-items: center;
-  }
-}
