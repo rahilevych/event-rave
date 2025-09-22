@@ -1,28 +1,26 @@
 .hero {
   position: relative;
-  top: var(--height-header);
-  padding-top: 100px;
+  margin-top: var(--height-header);
+  height: 250px;
 }
 .img {
   margin: 0 auto;
-
   width: 100%;
-  height: auto;
-  border-radius: 10px;
+  height: 500px;
 }
 .img > img {
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 10px;
+  height: 100%;
+  object-fit: cover;
 }
 h1 {
   position: absolute;
-  text-transform: uppercase;
-  color: var(--color-text-light);
   top: 50%;
   left: 50%;
+  margin-top: var(--height-header);
   transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  color: var(--color-text-light);
   font-size: 64px;
   text-align: center;
 }
