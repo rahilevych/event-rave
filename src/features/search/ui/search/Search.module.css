@@ -1,26 +1,5 @@
-/* .input {
-  width: 100%;
-  max-width: 400px;
-  padding: 20px;
-  height: auto;
-  font-size: 16px;
-  border: 2px solid #ddd;
-  border-radius: var(--border-radius);
-  outline: none;
-  transition: all 0.2s ease-in-out;
-}
-
-.input:focus {
-  border-color: #4f46e5;
-  box-shadow: 0 0 8px rgba(79, 70, 229, 0.3);
-}
-
-.input::placeholder {
-  color: #aaa;
-  font-style: italic;
-} */
 .input {
-  width: 400px;
+  width: 100%;
   padding: 12px 40px;
   font-size: 16px;
   border: 2px solid #ddd;
@@ -34,6 +13,7 @@
 .input-wrapper {
   position: relative;
   display: inline-block;
+  width: 100%;
 }
 
 .search-icon {

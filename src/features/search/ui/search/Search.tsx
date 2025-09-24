@@ -1,10 +1,20 @@
-import { useEffect, useState } from 'react';
-import { Input } from '../input/Input';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { Input } from '../../../../shared/ui/input/Input';
 import styles from './Search.module.css';
 import { FiSearch, FiX } from 'react-icons/fi';
 
-export const Search = () => {
-  const [text, setText] = useState('');
+type SearchProps = {
+  query: string;
+  setQuery: (value: string) => void;
+  setShowResults: (value: boolean) => void;
+  className?: string;
+};
+export const Search = ({
+  query,
+  setQuery,
+  setShowResults,
+  className,
+}: SearchProps) => {
   const placeholders = ['concerts', 'museums', 'festivals'];
   const [index, setIndex] = useState(0);
 
@@ -15,20 +25,26 @@ export const Search = () => {
     return () => clearTimeout(timeout);
   }, [index]);
 
+  const handleType = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+    setShowResults(true);
+  };
+
   return (
     <div className={styles['input-wrapper']}>
       <FiSearch className={styles['search-icon']} />
       <Input
-        className={styles.input}
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        className={`${styles.input} ${className}`}
+        value={query}
+        onChange={handleType}
+        onFocus={() => setShowResults(true)}
       />
-      {text && (
-        <button className={styles['clear-button']} onClick={() => setText('')}>
+      {query && (
+        <button className={styles['clear-button']} onClick={() => setQuery('')}>
           <FiX />
         </button>
       )}
-      {text === '' && (
+      {query === '' && (
         <span key={index} className={styles.placeholder}>
           Search for{' '}
           <span className={styles.changeable}> {placeholders[index]}</span>
