@@ -66,7 +66,10 @@ const RegisterForm = () => {
         <p>or</p>
 
         <p>
-          Already have an account? <Link to="/login">Sign in</Link>
+          Already have an account?{' '}
+          <Link to="/login" className={styles.signin}>
+            Sign in
+          </Link>
         </p>
       </div>
     </form>

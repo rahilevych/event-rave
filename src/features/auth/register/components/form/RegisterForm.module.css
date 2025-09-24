@@ -32,3 +32,6 @@
 .buttons > p {
   margin: 10px 0;
 }
+.signin {
+  color: var(--color-primary-light);
+}

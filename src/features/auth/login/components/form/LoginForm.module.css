@@ -30,11 +30,6 @@
   font-size: 16px;
   margin-bottom: 20px;
 }
-@media (max-width: 425px) {
-  .label > input {
-    width: 250px;
-  }
-  .label {
-    align-items: center;
-  }
+.signup {
+  color: var(--color-primary-light);
 }

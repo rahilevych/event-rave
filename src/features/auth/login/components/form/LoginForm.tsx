@@ -50,7 +50,10 @@ export const LoginForm = () => {
         </Button>
         <p>or</p>
         <p>
-          Don't have an account? <Link to="/registration">Sign up</Link>
+          Don't have an account?{' '}
+          <Link to="/registration" className={styles.signup}>
+            Sign up
+          </Link>
         </p>
       </div>
     </form>
