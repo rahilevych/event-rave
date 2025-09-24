@@ -1,26 +1,36 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './Dropdown.module.css';
-import { FaAngleDown } from 'react-icons/fa';
+
 import { AnimatePresence, motion } from 'motion/react';
 
-type DropdownProps = {
-  items: string[];
-  label?: string;
-  onSelect: (item: string) => void;
-  className?: string;
+type DropdownProps<T> = {
+  options: T[];
+  onSelect: (value: T) => void;
+  trigger?: React.ReactNode;
+  renderItem?: (item: T) => React.ReactNode;
+  classNameDropdown?: string;
+  classNameList?: string;
+  openIcon?: React.ReactNode;
+  closedIcon?: React.ReactNode;
 };
 
-export const Dropdown = ({
-  items,
-  label = 'Select',
+export const Dropdown = <T,>({
+  options,
   onSelect,
-  className,
-}: DropdownProps) => {
+  trigger,
+  renderItem,
+  classNameDropdown,
+  classNameList,
+
+  openIcon,
+  closedIcon,
+}: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
-  const handleSelect = (item: string) => {
+
+  const handleSelect = (item: T) => {
     onSelect(item);
     setIsOpen(false);
   };
@@ -41,30 +51,24 @@ export const Dropdown = ({
   return (
     <div
       data-testid="dropdown"
-      className={`${styles.dropdown} ${isOpen ? styles.pressed : ''} ${className || ''}`}
+      className={`${styles.dropdown} ${isOpen ? styles.pressed : ''} ${classNameDropdown || ''}`}
       ref={dropdownRef}
     >
-      <button
-        className={`${styles.button} ${isOpen ? styles.pressed : ''} `}
-        onClick={toggleDropdown}
-      >
-        {label}
-        <FaAngleDown
-          className={`${styles.icon} ${isOpen ? styles.opened : ''} `}
-        />
+      <button className={styles.button} onClick={toggleDropdown}>
+        {isOpen ? closedIcon || null : openIcon || trigger || null}{' '}
       </button>
       <AnimatePresence>
         {isOpen && (
           <motion.ul
-            className={styles.list}
+            className={`${styles.list} ${classNameList || ''}`}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.5 }}
           >
-            {items.map((item, index) => (
+            {options.map((item, index) => (
               <li key={index} onClick={() => handleSelect(item)}>
-                {item}
+                {renderItem ? renderItem(item) : String(item)}
               </li>
             ))}
           </motion.ul>

@@ -1,43 +1,21 @@
 .dropdown {
-  border-radius: 8px;
-}
-.button {
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 8px;
-  gap: 10px;
-  background-color: var(--color-background-ui);
-}
-.pressed {
-  border-radius: 8px 8px 0 0;
-}
-.icon {
-  transition: transform 0.5s ease;
-}
-.opened {
-  transform: rotate(180deg);
+  flex-direction: column;
+  align-items: end;
 }
 .list {
-  position: relative;
-  background-color: var(--color-background-ui);
-  border: 1px solid var(--color-primary-dark);
-  z-index: 2;
-  border-radius: 0 0 8px 8px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  overflow: hidden;
 }
 .list li {
-  font-size: 16px;
-  background-color: var(--color-background-ui);
-  color: var(--color-primary-dark);
-  padding: 8px;
-  transition: all 0.5s ease-in-out;
+  width: 100%;
+  text-align: center;
   cursor: pointer;
-  border-bottom: 1px solid lightgray;
-}
-.list > li:last-child {
-  border-radius: 0 0 8px 8px;
-}
-.list li:hover {
-  background-color: var(--color-primary-light-hover);
-  color: var(--color-background);
 }
