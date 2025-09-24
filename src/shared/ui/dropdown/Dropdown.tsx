@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './Dropdown.module.css';
 
 import { AnimatePresence, motion } from 'motion/react';
+import { useClickOutside } from '../../hooks/useClickOutside';
 
 type DropdownProps<T> = {
   options: T[];
@@ -34,19 +35,7 @@ export const Dropdown = <T,>({
     onSelect(item);
     setIsOpen(false);
   };
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, []);
+  useClickOutside(dropdownRef, () => setIsOpen(false));
 
   return (
     <div
