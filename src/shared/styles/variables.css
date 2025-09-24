@@ -6,13 +6,11 @@
   --color-primary-dark: rgb(71, 42, 105);
 
   --color-primary-light: rgb(146, 86, 155);
-  --color-primary-light-hover: rgb(71, 42, 105);
+  --color-primary-light-hover: rgb(200, 160, 210);
   --color-border: #ddd;
 
   --color-success: #3aa97b;
-  /* --color-success-light: #e0f4ec; */
   --color-error: #d3455b;
-  /* --color-error-light: #fbecee; */
 
   /* buttons */
   --border-radius: 5px;
