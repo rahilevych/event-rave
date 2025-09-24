@@ -3,28 +3,31 @@ import { useWindowSize } from '../../shared/hooks/useWindowSize';
 import { Button } from '../../shared/ui/Button/Button';
 import styles from './Header.module.css';
 import { MobileMenu } from './MobileMenu';
+
+import { Logo } from '../../shared/ui/logo/Logo';
+import { SearchSection } from '../../features/search/components/search-section/SearchSection';
 export const Header = () => {
   const { width } = useWindowSize();
   const isMobile = width < 768;
+  const text = 'Event Rave';
   return (
     <header className={styles.header}>
       <div className={styles.content}>
-        <div data-testid="logo" className={styles.logo}>
-          <span>Event</span>
-          <span>Rave</span>
-        </div>
+        <Logo text={text} className={styles.logo} />
         {isMobile ? (
           <MobileMenu />
         ) : (
-          <div className={styles.buttons}>
-            <Link to="login">
-              <Button className={styles.login}>Log in</Button>
-            </Link>
-            <Link to="registration">
-              {' '}
-              <Button className={styles.signup}> Sign up</Button>
-            </Link>
-          </div>
+          <>
+            <SearchSection />
+            <div className={styles.buttons}>
+              <Link to="login">
+                <Button className={styles.login}>Log in</Button>
+              </Link>
+              <Link to="registration">
+                <Button className={styles.signup}> Sign up</Button>
+              </Link>
+            </div>
+          </>
         )}
       </div>
     </header>
