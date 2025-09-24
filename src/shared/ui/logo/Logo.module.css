@@ -2,17 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 32px;
   width: fit-content;
   gap: 10px;
   color: var(--color-primary-dark);
 }
-
 .accent {
   color: var(--color-text-accent);
-}
-@media (max-width: 425px) {
-  .logo {
-    font-size: 24px;
-  }
 }
