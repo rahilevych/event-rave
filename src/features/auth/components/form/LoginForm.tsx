@@ -1,11 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import styles from './LoginForm.module.css';
-import { LoginData, loginSchema } from './schema/loginSchema';
+import styles from './AuthForm.module.css';
+
 import { useForm } from 'react-hook-form';
-import { Button } from '../../../../../shared/ui/Button/Button';
+
 import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
-import { FormField } from '../../../../../shared/ui/form-field/FormField';
+
+import { FormField } from '../../../../shared/ui/form-field/FormField';
+import { Button } from '../../../../shared/ui/Button/Button';
+import { LoginData, loginSchema } from '../../schemas/loginSchema';
 
 export const LoginForm = () => {
   const {
@@ -51,7 +54,7 @@ export const LoginForm = () => {
         <p>or</p>
         <p>
           Don't have an account?{' '}
-          <Link to="/registration" className={styles.signup}>
+          <Link to="/registration" className={styles.link}>
             Sign up
           </Link>
         </p>

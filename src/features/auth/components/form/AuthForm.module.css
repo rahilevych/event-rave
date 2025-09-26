@@ -5,13 +5,13 @@
   justify-content: center;
   width: 100%;
   height: auto;
-  gap: 20px;
+  gap: 10px;
 }
 
 .button {
   width: 250px;
   height: 50px;
-  margin-top: 20px;
+  margin-top: 10px;
   cursor: pointer;
 }
 .buttons {
@@ -28,10 +28,8 @@
   color: var(--color-primary-dark);
   border: 1px solid var(--color-primary-dark);
   font-size: 16px;
+  margin-bottom: 10px;
 }
-.buttons > p {
-  margin: 10px 0;
-}
-.signin {
+.link {
   color: var(--color-primary-light);
 }

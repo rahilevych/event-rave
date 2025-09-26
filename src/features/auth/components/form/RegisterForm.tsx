@@ -1,12 +1,12 @@
+import styles from './AuthForm.module.css';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { RegisterData, registerSchema } from './schema/registerSchema';
-import { Button } from '../../../../../shared/ui/Button/Button';
-import { FcGoogle } from 'react-icons/fc';
 
-import styles from './RegisterForm.module.css';
+import { Button } from '../../../../shared/ui/Button/Button';
+import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
-import { FormField } from '../../../../../shared/ui/form-field/FormField';
+import { FormField } from '../../../../shared/ui/form-field/FormField';
+import { RegisterData, registerSchema } from '../../schemas/registerSchema';
 const RegisterForm = () => {
   const {
     register,
@@ -67,7 +67,7 @@ const RegisterForm = () => {
 
         <p>
           Already have an account?{' '}
-          <Link to="/login" className={styles.signin}>
+          <Link to="/login" className={styles.link}>
             Sign in
           </Link>
         </p>
