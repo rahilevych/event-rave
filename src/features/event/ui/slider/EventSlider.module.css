@@ -1,0 +1,49 @@
+.wrapper {
+  position: relative;
+}
+
+.prev,
+.next {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(200, 160, 210, 0.5);
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.prev {
+  left: -32px;
+}
+.next {
+  right: -32px;
+}
+.prev,
+.next {
+  visibility: visible;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(146, 86, 155, 0.8);
+}
+
+.hidden {
+  visibility: hidden;
+}
+@media (max-width: 768px) {
+  .prev,
+  .next {
+    display: none;
+  }
+}
