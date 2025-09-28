@@ -14,6 +14,7 @@ export const EventCard = ({ card }: EventCardProps) => {
         <p className={styles.title}>{card.title}</p>
         <p className={styles.date}>{card.date}</p>
         <p className={styles.location}>{card.location}</p>
+        <p className={styles.price}>{card.price}</p>
       </div>
     </div>
   );
