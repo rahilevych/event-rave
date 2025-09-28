@@ -1,4 +1,3 @@
-// import { SearchSection } from '../../../search/SearchSection';
 import styles from './Hero.module.css';
 
 export const Hero = () => {
@@ -11,7 +10,6 @@ export const Hero = () => {
         />
       </div>
       <h1>Your stage. Your energy. Your rave.</h1>
-      {/* <SearchSection /> */}
     </section>
   );
 };
