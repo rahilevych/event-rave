@@ -7,4 +7,5 @@ export type Event = {
   day: string;
   type: string;
   category: string;
+  price: string;
 };

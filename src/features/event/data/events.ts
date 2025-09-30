@@ -14,6 +14,7 @@ export const events = [
     day: 'Monday',
     type: 'Workshop',
     category: 'Tech',
+    price: '$29',
   },
   {
     title: 'Modern Art Meetup',
@@ -25,6 +26,7 @@ export const events = [
     day: 'Tuesday',
     type: 'Meetup',
     category: 'Art',
+    price: '$49',
   },
   {
     title: 'Healthcare Innovations Conference',
@@ -36,6 +38,7 @@ export const events = [
     day: 'Wednesday',
     type: 'Conference',
     category: 'Health',
+    price: '$19',
   },
   {
     title: 'Online Learning Strategies',
@@ -47,6 +50,7 @@ export const events = [
     day: 'Thursday',
     type: 'Webinar',
     category: 'Education',
+    price: '$19',
   },
   {
     title: 'Startup Growth Tactics',
@@ -58,6 +62,7 @@ export const events = [
     day: 'Friday',
     type: 'Meetup',
     category: 'Business',
+    price: '$19',
   },
   {
     title: 'Startup Growth Tactics',
@@ -69,5 +74,6 @@ export const events = [
     day: 'Friday',
     type: 'Meetup',
     category: 'Business',
+    price: '$19',
   },
 ];
