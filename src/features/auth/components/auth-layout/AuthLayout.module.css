@@ -39,12 +39,20 @@
   .container {
     margin: 0 auto;
   }
-  .content {
-    width: 95%;
+}
+@media (max-width: 768px) {
+  .container {
+    width: 400px;
   }
 }
 @media (max-width: 425px) {
   .container > p {
     font-size: 12px;
+  }
+  .container > h2 {
+    margin-top: 0.25rem;
+  }
+  .container {
+    width: 300px;
   }
 }

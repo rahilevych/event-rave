@@ -27,3 +27,9 @@
 .label > input:focus {
   border: 1px solid var(--color-primary-dark);
 }
+
+@media (max-width: 425px) {
+  .label {
+    width: 90%;
+  }
+}
