@@ -14,9 +14,17 @@ body {
   font-family: var(--font-family-base);
   font-weight: var(--font-weight);
   font-size: 16px;
-  background-color: var(--color-background);
+  background-color: var(--color-background-ui);
   color: var(--color-text-dark);
   line-height: 1.5;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
 }
 
 a {

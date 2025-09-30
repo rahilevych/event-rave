@@ -2,30 +2,25 @@
   position: fixed;
   height: var(--height-header);
   background-color: var(--color-background-nav);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   width: 100%;
-  z-index: 9999;
+  z-index: 20;
   display: flex;
   align-items: center;
+}
+.logo {
+  font-size: 32px;
 }
 .content {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
   width: 90%;
   max-width: 1440px;
   margin: 0 auto;
 }
-.logo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 40px;
-  width: auto;
-  gap: 0.5rem;
-}
-.logo > span:last-child {
-  color: var(--color-text-accent);
-}
+
 .signup,
 .login {
   width: 130px;
@@ -33,7 +28,8 @@
 }
 .login {
   background-color: transparent;
-  color: var(--color-btn-text-dark);
+  color: var(--color-btn-dark);
+  border: 1px solid var(--color-btn-dark);
 }
 .buttons {
   display: flex;
@@ -43,7 +39,11 @@
   width: auto;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 1024px) {
+  .signup,
+  .login {
+    width: 110px;
+  }
   .logo {
     font-size: 24px;
   }

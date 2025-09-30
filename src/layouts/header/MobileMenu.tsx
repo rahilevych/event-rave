@@ -1,44 +1,51 @@
-import { useRef, useState } from 'react';
-import { MobileDropdown } from './MobileDropdown';
-import { MdClose, MdPerson } from 'react-icons/md';
 import styles from './MobileMenu.module.css';
-import { AnimatePresence, motion } from 'motion/react';
-import { useClickOutside } from '../../shared/hooks/useClickOutside';
 
+import { Dropdown } from '../../shared/ui/dropdown/Dropdown';
+import { useNavigate } from 'react-router-dom';
+import { MdClose, MdPerson, MdSearch } from 'react-icons/md';
+import { useState } from 'react';
+import MobileSearch from '../../features/search/components/mobile/MobileSearch';
+
+type MenuItem = {
+  label: string;
+  path: string;
+};
+const menuItems: MenuItem[] = [
+  { label: 'Sign in', path: '/login' },
+  { label: 'Sign up', path: '/registration' },
+];
 export const MobileMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const navigate = useNavigate();
+  const [isSearchOpened, setIsSearchOpened] = useState(false);
 
-  useClickOutside(dropdownRef, () => setIsOpen(false), isOpen);
   return (
-    <div data-testid="mobile-menu" ref={dropdownRef} className={styles.menu}>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className={`${styles.dropdown} ${styles.opened}`}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
-          >
-            <MobileDropdown />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {!isOpen ? (
-        <MdPerson
-          data-testid="person-icon"
-          onClick={() => setIsOpen(true)}
-          className={styles.openIcon}
-        />
-      ) : (
-        <MdClose
-          data-testid="close-icon"
-          className={styles.closeIcon}
-          onClick={() => setIsOpen(false)}
+    <div data-testid="mobile-menu" className={styles.menu}>
+      {isSearchOpened && (
+        <MobileSearch
+          isSearchOpened={isSearchOpened}
+          setIsSearchOpened={setIsSearchOpened}
         />
       )}
+      <button
+        onClick={() => {
+          setIsSearchOpened(true);
+        }}
+      >
+        <MdSearch className={styles.icon} />
+      </button>{' '}
+      <Dropdown
+        options={menuItems}
+        onSelect={(item) => navigate(item.path)}
+        renderItem={(item) => <span className={styles.item}>{item.label}</span>}
+        classNameDropdown={`${styles.dropdown} ${styles.opened}`}
+        classNameList={styles.list}
+        openIcon={
+          <MdPerson data-testid="person-icon" className={styles.icon} />
+        }
+        closedIcon={
+          <MdClose data-testid="close-icon" className={styles.icon} />
+        }
+      />
     </div>
   );
 };

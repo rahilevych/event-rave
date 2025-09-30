@@ -1,3 +1,4 @@
+import { splitText } from '../../utils/splitText';
 import styles from './Title.module.css';
 
 type TitleProps = {
@@ -5,9 +6,7 @@ type TitleProps = {
   className?: string;
 };
 export const Title = ({ text, className }: TitleProps) => {
-  const words = text.trim().split(' ');
-  const lastWord = words.pop();
-  const beginning = words.join(' ');
+  const { beginning, lastWord } = splitText(text);
   return (
     <h2 className={`${styles.title} ${className}`}>
       {beginning && <>{beginning}&nbsp;</>}
