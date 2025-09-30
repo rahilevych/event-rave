@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { EventCard } from '../EventCard';
+import { EventCard } from '../ui/card/EventCard';
 
 describe('EventCard', () => {
   test('should render correctly event card', () => {
@@ -14,11 +14,13 @@ describe('EventCard', () => {
       day: 'Monday',
       type: 'Workshop',
       category: 'Tech',
+      price: '49',
     };
     render(<EventCard card={event} />);
     expect(screen.getByText(/AI & Future Workshop/i)).toBeInTheDocument();
     expect(screen.getByText(/Berlin, Germany/i)).toBeInTheDocument();
     expect(screen.getByText(/2025-08-11/i)).toBeInTheDocument();
     expect(screen.getByAltText(/event/i)).toBeInTheDocument();
+    expect(screen.getByText(/49/i)).toBeInTheDocument();
   });
 });

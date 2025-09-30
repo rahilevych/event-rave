@@ -37,10 +37,13 @@ export const EventSlider = ({ events }: EventSliderProps) => {
       <Swiper
         modules={[Navigation]}
         onBeforeInit={(swiper) => {
-          // @ts-ignore
-          swiper.params.navigation.prevEl = prevRef.current;
-          // @ts-ignore
-          swiper.params.navigation.nextEl = nextRef.current;
+          if (
+            swiper.params.navigation &&
+            typeof swiper.params.navigation !== 'boolean'
+          ) {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+          }
         }}
         onSlideChange={(swiper) => {
           setIsBeginning(swiper.isBeginning);
