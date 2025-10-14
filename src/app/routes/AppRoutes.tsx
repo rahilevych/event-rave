@@ -2,8 +2,9 @@ import { Route, Routes } from 'react-router-dom';
 import { HomePage } from '../../pages/HomePage';
 import { LoginPage } from '../../pages/LoginPage';
 import { ProtectedRoute } from './ProtectedRoute';
-import { Profile } from '../../pages/Profile';
+
 import { RegistrationPage } from '../../pages/RegistrationPage';
+import { ProfilePage } from '../../pages/ProfilePage';
 
 export const AppRoutes = () => {
   return (
@@ -16,7 +17,7 @@ export const AppRoutes = () => {
         path="profile"
         element={
           <ProtectedRoute>
-            <Profile />
+            <ProfilePage />
           </ProtectedRoute>
         }
       ></Route>
