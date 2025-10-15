@@ -1,0 +1,25 @@
+.header {
+  position: fixed;
+  height: var(--height-header);
+  background-color: var(--color-background-nav);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+}
+.logo {
+  font-size: 32px;
+}
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 90%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.content {
+  display: flex;
+}
