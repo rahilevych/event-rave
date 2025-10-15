@@ -43,6 +43,13 @@ export const useAuthStore = create<AuthState>((set) => ({
         email,
         password,
       );
+      localStorage.setItem('token', response.data.token);
+      set({
+        user: response.data.user,
+        token: response.data.token,
+        isAuth: true,
+        loading: false,
+      });
       console.log(response);
     } catch (error) {
       console.log(error);
