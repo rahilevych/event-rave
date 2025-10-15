@@ -1,7 +1,7 @@
 import styles from './MobileMenu.module.css';
 
-import { Dropdown } from '../../shared/ui/dropdown/Dropdown';
-import { useNavigate } from 'react-router-dom';
+import { DropdownWrapper } from '../../shared/ui/dropdown/DropdownWrapper';
+import { Link } from 'react-router-dom';
 import { MdClose, MdPerson, MdSearch } from 'react-icons/md';
 import { useState } from 'react';
 import MobileSearch from '../../features/search/components/mobile/MobileSearch';
@@ -15,7 +15,6 @@ const menuItems: MenuItem[] = [
   { label: 'Sign up', path: '/registration' },
 ];
 export const MobileMenu = () => {
-  const navigate = useNavigate();
   const [isSearchOpened, setIsSearchOpened] = useState(false);
 
   return (
@@ -33,19 +32,23 @@ export const MobileMenu = () => {
       >
         <MdSearch className={styles.icon} />
       </button>{' '}
-      <Dropdown
-        options={menuItems}
-        onSelect={(item) => navigate(item.path)}
-        renderItem={(item) => <span className={styles.item}>{item.label}</span>}
-        classNameDropdown={`${styles.dropdown} ${styles.opened}`}
-        classNameList={styles.list}
-        openIcon={
-          <MdPerson data-testid="person-icon" className={styles.icon} />
+      <DropdownWrapper
+        trigger={(isOpen) =>
+          isOpen ? (
+            <MdPerson className={styles.icon} />
+          ) : (
+            <MdClose className={styles.icon} />
+          )
         }
-        closedIcon={
-          <MdClose data-testid="close-icon" className={styles.icon} />
-        }
-      />
+      >
+        <ul className={styles.list}>
+          {menuItems.map((item, index) => (
+            <Link className={styles.item} to={item.path} key={index}>
+              <li>{item.label}</li>
+            </Link>
+          ))}
+        </ul>
+      </DropdownWrapper>
     </div>
   );
 };
