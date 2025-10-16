@@ -15,7 +15,6 @@ export const useUserStore = create<UserState>((set) => ({
   updateUser: async (id: number, data: User) => {
     try {
       const response = await UserService.updateUser(id, data);
-      console.log('response fron update', response);
       set({ user: response.data.user });
     } catch (error) {
       console.log(error);
@@ -25,7 +24,6 @@ export const useUserStore = create<UserState>((set) => ({
     try {
       const response = await UserService.getUser(id);
       set({ user: response.data.user });
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
