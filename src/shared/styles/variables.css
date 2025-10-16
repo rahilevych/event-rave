@@ -6,10 +6,11 @@
   --color-primary-dark: rgb(71, 42, 105);
   --color-primary-light: rgb(146, 86, 155);
   --color-primary-light-hover: rgb(200, 160, 210);
-  --color-border: #ddd;
+  --color-border: #f5f5f5;
+  --color-border-dark: #c0c0c0;
 
-  --color-success: #3aa97b;
-  --color-error: #d3455b;
+  --color-success: #9acb9a;
+  --color-error: #e6a6a6;
 
   /* buttons */
   --border-radius: 6px;
@@ -25,6 +26,8 @@
   --color-text-dark: black;
   --color-text-accent: var(--color-primary-light);
   --color-text-accent-light: #7e7e7e;
+  --color-text-error: #e53935;
+  --color-text-success: #4caf50;
 
   /* margins */
 
