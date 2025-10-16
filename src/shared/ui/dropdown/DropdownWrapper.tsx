@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import styles from './Dropdown.module.css';
+import styles from './DropdownWrapper.module.css';
 
 import { AnimatePresence, motion } from 'motion/react';
 import { useClickOutside } from '../../hooks/useClickOutside';
