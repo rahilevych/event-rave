@@ -1,0 +1,12 @@
+.section {
+  flex: 1;
+  margin-top: 50px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius);
+  height: fit-content;
+  padding: 2rem;
+}
+.title {
+  padding: 1rem;
+  border-bottom: 2px solid var(--color-border);
+}
