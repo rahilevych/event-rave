@@ -11,7 +11,7 @@
 .logo {
   font-size: 32px;
 }
-.content {
+.logo-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,4 +22,8 @@
 }
 .content {
   display: flex;
+  align-items: start;
+  justify-content: space-between;
+  padding-top: var(--height-header);
+  gap: 50px;
 }
