@@ -22,7 +22,6 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
   token: null,
   isAuth: false,
   loading: false,
@@ -82,7 +81,7 @@ export const useAuthStore = create<AuthState>((set) => ({
         {},
         { withCredentials: true },
       );
-      console.log(response);
+
       const token = response.data.token;
       const user = response.data.user;
       localStorage.setItem('token', token);

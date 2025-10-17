@@ -18,13 +18,12 @@ export const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<LoginData>({ resolver: zodResolver(loginSchema) });
   const login = useAuthStore((state) => state.login);
-  const isAuth = useAuthStore((state) => state.isAuth);
   const navigate = useNavigate();
 
   const onSubmit = async (data: LoginData) => {
     try {
       await login(data.email, data.password);
-      if (isAuth) navigate('/profile', { replace: true });
+      navigate('/profile', { replace: true });
     } catch (error) {
       console.error('Login error', error);
     }

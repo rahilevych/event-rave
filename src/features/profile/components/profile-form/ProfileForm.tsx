@@ -35,16 +35,16 @@ export const ProfileForm = ({ onCancel }: { onCancel: () => void }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <FormField
-        label="Email:"
-        register={register('email')}
-        placeholder="Email"
-        error={errors.email}
-      />
-      <FormField
         label="Full name:"
         register={register('fullName')}
         placeholder="Full name"
         error={errors.fullName}
+      />
+      <FormField
+        label="Email:"
+        register={register('email')}
+        placeholder="Email"
+        error={errors.email}
       />
       <div className={styles.buttons}>
         <Button
