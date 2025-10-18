@@ -6,3 +6,9 @@
   justify-content: space-between;
   align-items: center;
 }
+@media (max-width: 768px) {
+  .events {
+    margin-top: 30px;
+    padding: 1rem;
+  }
+}

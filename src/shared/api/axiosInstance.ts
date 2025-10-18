@@ -8,7 +8,13 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  const publicPaths = ['/auth/login', '/auth/register', '/auth/refresh'];
+  if (!publicPaths.some((path) => config.url?.includes(path))) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+  }
   return config;
 });
 

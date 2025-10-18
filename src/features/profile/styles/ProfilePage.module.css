@@ -11,7 +11,7 @@
 .logo {
   font-size: 32px;
 }
-.content {
+.logo-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,10 +20,18 @@
   max-width: 1440px;
   margin: 0 auto;
 }
-.laptop-menu {
+.content {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
-  gap: 3rem;
-  width: 100%;
+  padding-top: var(--height-header);
+  gap: 50px;
+}
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+    gap: 10px;
+  }
 }

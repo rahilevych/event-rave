@@ -1,0 +1,42 @@
+[33m668127c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeat/profile[m[33m)[m HEAD@{0}: reset: moving to HEAD~1
+[33m3bb1c95[m HEAD@{1}: commit: refactor: update headet nav
+[33m668127c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeat/profile[m[33m)[m HEAD@{2}: commit: feat: create constant for different menu lists
+[33m419f99c[m HEAD@{3}: commit: refactor:clear code
+[33m1a3f8c9[m HEAD@{4}: commit: feat: add logic for refresh token
+[33m0226cb7[m HEAD@{5}: commit: refator:update styles for form field
+[33m0ff0dc1[m HEAD@{6}: commit: feat update dropdown wrapper
+[33mf9648e1[m HEAD@{7}: commit: feat:create profile form
+[33m71c0e29[m HEAD@{8}: reset: moving to HEAD~1
+[33m4860ad4[m HEAD@{9}: revert: Revert "feat: create profile form component"
+[33m71c0e29[m HEAD@{10}: commit: feat: create profile form component
+[33m3b06374[m HEAD@{11}: commit: feat: create components for tikets and favorites
+[33mb7c8fbc[m HEAD@{12}: commit: feat:update profile page
+[33m1f38417[m HEAD@{13}: commit: feat: update user types
+[33m2e82853[m HEAD@{14}: commit: feat: create section component to display info after click in sidebar
+[33m955caea[m HEAD@{15}: commit: feat: create profile info component
+[33m6becf84[m HEAD@{16}: commit: feat: create profile data component
+[33mdaf44ed[m HEAD@{17}: commit: feat:create sidebar component
+[33m9be4d76[m HEAD@{18}: commit: chore:update dependencies
+[33m39c2bd2[m HEAD@{19}: commit: feat(style): update variables
+[33ma8bdf24[m HEAD@{20}: commit: feat(users): create store for users
+[33m05e7c63[m HEAD@{21}: commit: feat:create interface for user info & response
+[33me0618dd[m HEAD@{22}: commit: feat(users):create user service
+[33m6a025db[m HEAD@{23}: commit: feat(api): add statement to check if endpoint protected is
+[33m0b8e73c[m HEAD@{24}: commit: refactor:update logic for logged in / logged out user
+[33m5297f6b[m HEAD@{25}: commit: refactor: update mobile menu
+[33m7a2ac17[m HEAD@{26}: commit: feat: create dropdown for logged in user menu
+[33mf1264d6[m HEAD@{27}: commit: refactor: made dropdown more flexible, rename it into dropdown wrapper
+[33madf7554[m HEAD@{28}: commit: feat: create user image ui component
+[33m218bb9b[m HEAD@{29}: checkout: moving from feature/auth to feat/profile
+[33m63077c4[m[33m ([m[1;32mfeature/auth[m[33m)[m HEAD@{30}: commit: refactor:update register function to allow user use protected routes after registration
+[33m4dcf4d4[m HEAD@{31}: checkout: moving from feat/profile to feature/auth
+[33m218bb9b[m HEAD@{32}: commit: feat: update profile page
+[33m4dcf4d4[m HEAD@{33}: checkout: moving from feature/auth to feat/profile
+[33m4dcf4d4[m HEAD@{34}: commit: feat(auth):implement regisration and login functionality
+[33mff24ae5[m HEAD@{35}: commit: feat(auth):create AuthStore for global state
+[33m8ec0165[m HEAD@{36}: commit: feat(auth):create interfaces for auth response and user
+[33m8cdcbb2[m HEAD@{37}: commit: feat(auth): create Auth service for api requests
+[33mb4643f7[m HEAD@{38}: commit: feat(auth): create axios instance with interceptors
+[33mad8bb3f[m HEAD@{39}: commit: refactor:update protected route
+[33m30137ca[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{40}: checkout: moving from master to feature/auth
+[33m30137ca[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{41}: clone: from https://github.com/rahilevych/event-rave.git

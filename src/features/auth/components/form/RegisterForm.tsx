@@ -18,13 +18,13 @@ const RegisterForm = () => {
   });
 
   const registration = useAuthStore((state) => state.registration);
-  const isAuth = useAuthStore((state) => state.isAuth);
+
   const navigate = useNavigate();
 
   const onSubmit = async (data: RegisterData) => {
     try {
       await registration(data.yourName, data.email, data.password);
-      if (isAuth) navigate('/profile', { replace: true });
+      navigate('/profile', { replace: true });
     } catch (error) {
       console.error('Login error', error);
     }
@@ -55,13 +55,13 @@ const RegisterForm = () => {
         placeholder="Password"
         error={errors.password}
       />
-      {/* <FormField
+      <FormField
         label="Confirm Password"
         register={register('confirmPassword')}
         type="password"
         placeholder="Confirm Password"
         error={errors.confirmPassword}
-      /> */}
+      />
       <div className={styles.buttons}>
         <Button type="submit" className={styles.button} disabled={isSubmitting}>
           Sign Up

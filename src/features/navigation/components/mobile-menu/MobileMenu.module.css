@@ -1,0 +1,12 @@
+.menu {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+.icon {
+  font-size: 24px;
+  color: var(--color-primary-light);
+  pointer-events: none;
+}

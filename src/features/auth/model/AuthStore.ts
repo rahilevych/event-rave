@@ -1,17 +1,16 @@
 import { create } from 'zustand';
-import { IUser } from './types';
 import AuthService from '../service/AuthService';
 import axios from 'axios';
 import { AuthResponse } from './AuthResponse';
 import { API_URL } from '../../../shared/api/axiosInstance';
+import { useUserStore } from '../../profile/model/UserStore';
 
 interface AuthState {
-  user: IUser | null;
   token: string | null;
   isAuth: boolean;
   loading: boolean;
   error: string | null;
-  setCurrentUser: (user: IUser | null, token?: string | null) => void;
+
   login: (email: string, password: string) => Promise<void>;
   registration: (
     fullName: string,
@@ -23,18 +22,11 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
   token: null,
   isAuth: false,
   loading: false,
   error: null,
 
-  setCurrentUser: (user, token) =>
-    set({
-      user: user || ({} as IUser),
-      token: token || null,
-      isAuth: !!user,
-    }),
   registration: async (fullName: string, email: string, password: string) => {
     set({ loading: true, error: null });
     try {
@@ -61,13 +53,17 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       const response = await AuthService.login(email, password);
       console.log(response);
-      localStorage.setItem('token', response.data.token);
+      const token = response.data.token;
+      const user = response.data.user;
+      localStorage.setItem('token', token);
       set({
-        user: response.data.user,
         token: response.data.token,
         isAuth: true,
         loading: false,
       });
+      const { setUser, getUser } = useUserStore.getState();
+      setUser(user);
+      await getUser(user.id);
     } catch (error) {
       console.log(error);
       set({ loading: false });
@@ -78,6 +74,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       await AuthService.logout();
       localStorage.removeItem('token');
       set({ token: null, isAuth: false });
+      useUserStore.getState().setUser(null);
     } catch (error) {
       console.log(error);
     }
@@ -91,17 +88,21 @@ export const useAuthStore = create<AuthState>((set) => ({
         {},
         { withCredentials: true },
       );
-      console.log(response);
-      localStorage.setItem('token', response.data.token);
+
+      const token = response.data.token;
+      const user = response.data.user;
+      localStorage.setItem('token', token);
       set({
-        user: response.data.user,
         token: response.data.token,
         isAuth: true,
         loading: false,
       });
+      const { setUser, getUser } = useUserStore.getState();
+      setUser(user);
+      await getUser(user.id);
     } catch (error) {
       console.log(error);
-      set({ user: null, token: null, isAuth: false, loading: false });
+      set({ token: null, isAuth: false, loading: false });
     }
   },
 }));
