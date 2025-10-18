@@ -11,11 +11,17 @@ export const NavDropdown = ({ menuItems }: NavDropdownProps) => {
   return (
     <DropdownWrapper direction="bottom" trigger={<UserImg />}>
       <ul className={styles.list}>
-        {menuItems.map((item, index) => (
-          <Link className={styles.item} to={item.path} key={index}>
-            <li>{item.label}</li>
-          </Link>
-        ))}
+        {menuItems.map((item, index) =>
+          item.onClick ? (
+            <li key={index} className={styles.item} onClick={item.onClick}>
+              {item.label}
+            </li>
+          ) : (
+            <Link key={index} className={styles.item} to={item.path || '#'}>
+              {item.label}
+            </Link>
+          ),
+        )}
       </ul>
     </DropdownWrapper>
   );
