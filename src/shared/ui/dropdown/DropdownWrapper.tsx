@@ -70,6 +70,7 @@ export const DropdownWrapper = ({
             animate={getAnimate()}
             exit={getExit()}
             transition={{ duration: 0.2 }}
+            onClick={() => setIsOpen(false)}
           >
             {children}
           </motion.div>

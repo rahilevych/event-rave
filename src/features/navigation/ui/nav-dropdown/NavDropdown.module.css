@@ -1,7 +1,5 @@
 .dropdown {
-  position: relative;
-  width: auto;
-  display: inline-block;
+  align-items: end !important;
 }
 .list {
   position: absolute;

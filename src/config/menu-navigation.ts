@@ -1,7 +1,7 @@
 export const getMenuItems = (isAuth: boolean, logout?: () => void) => {
   return isAuth
     ? [
-        { label: 'Profile', path: '/' },
+        { label: 'Profile', path: '/profile' },
         { label: 'Logout', onClick: logout },
       ]
     : [

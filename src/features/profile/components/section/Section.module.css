@@ -12,6 +12,11 @@
 }
 @media (max-width: 768px) {
   .section {
+    padding: 1rem;
+    margin-top: 20px;
     width: 95%;
+  }
+  .title {
+    padding: 0.5rem;
   }
 }
