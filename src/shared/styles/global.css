@@ -69,9 +69,7 @@ input {
   body {
     font-size: 14px;
   }
-}
-@media (max-width: 640px) {
   .container {
-    width: 95%;
+    width: 100%;
   }
 }
