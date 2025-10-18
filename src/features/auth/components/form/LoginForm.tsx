@@ -4,11 +4,12 @@ import styles from './AuthForm.module.css';
 import { useForm } from 'react-hook-form';
 
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { FormField } from '../../../../shared/ui/form-field/FormField';
 import { Button } from '../../../../shared/ui/Button/Button';
 import { LoginData, loginSchema } from '../../schemas/loginSchema';
+import { useAuthStore } from '../../model/AuthStore';
 
 export const LoginForm = () => {
   const {
@@ -16,12 +17,16 @@ export const LoginForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginData>({ resolver: zodResolver(loginSchema) });
+  const login = useAuthStore((state) => state.login);
+  const isAuth = useAuthStore((state) => state.isAuth);
+  const navigate = useNavigate();
 
-  const onSubmit = async () => {
+  const onSubmit = async (data: LoginData) => {
     try {
-      console.log('try to login');
+      await login(data.email, data.password);
+      if (isAuth) navigate('/profile', { replace: true });
     } catch (error) {
-      console.error('err', error);
+      console.error('Login error', error);
     }
   };
   return (
@@ -48,7 +53,7 @@ export const LoginForm = () => {
         <Button className={styles.button} type="submit" disabled={isSubmitting}>
           Sign in
         </Button>
-        <Button className={styles.button} type="submit" disabled={isSubmitting}>
+        <Button className={styles.button} type="button" disabled={isSubmitting}>
           <FcGoogle /> Sign in with Google
         </Button>
         <p>or</p>

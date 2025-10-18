@@ -4,9 +4,10 @@ import { useForm } from 'react-hook-form';
 
 import { Button } from '../../../../shared/ui/Button/Button';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FormField } from '../../../../shared/ui/form-field/FormField';
 import { RegisterData, registerSchema } from '../../schemas/registerSchema';
+import { useAuthStore } from '../../model/AuthStore';
 const RegisterForm = () => {
   const {
     register,
@@ -15,13 +16,20 @@ const RegisterForm = () => {
   } = useForm<RegisterData>({
     resolver: zodResolver(registerSchema),
   });
+
+  const registration = useAuthStore((state) => state.registration);
+  const isAuth = useAuthStore((state) => state.isAuth);
+  const navigate = useNavigate();
+
   const onSubmit = async (data: RegisterData) => {
     try {
-      console.log('Register data:', data);
+      await registration(data.yourName, data.email, data.password);
+      if (isAuth) navigate('/profile', { replace: true });
     } catch (error) {
-      console.error('Registration error:', error);
+      console.error('Login error', error);
     }
   };
+
   return (
     <form
       data-testid="register-form"
@@ -47,13 +55,13 @@ const RegisterForm = () => {
         placeholder="Password"
         error={errors.password}
       />
-      <FormField
+      {/* <FormField
         label="Confirm Password"
         register={register('confirmPassword')}
         type="password"
         placeholder="Confirm Password"
         error={errors.confirmPassword}
-      />
+      /> */}
       <div className={styles.buttons}>
         <Button type="submit" className={styles.button} disabled={isSubmitting}>
           Sign Up
