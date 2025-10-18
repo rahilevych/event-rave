@@ -10,8 +10,7 @@ import { NavDropdown } from '../../ui/nav-dropdown/NavDropdown';
 export const MobileMenu = () => {
   const [isSearchOpened, setIsSearchOpened] = useState(false);
   const isAuth = useAuthStore((state) => state.isAuth);
-  const menuItems = getMenuItems(isAuth);
-
+  const logout = useAuthStore((state) => state.logout);
   return (
     <div data-testid="mobile-menu" className={styles.menu}>
       {isSearchOpened && (
@@ -27,7 +26,7 @@ export const MobileMenu = () => {
       >
         <MdSearch className={styles.icon} />
       </button>{' '}
-      <NavDropdown menuItems={menuItems} />
+      <NavDropdown menuItems={getMenuItems(isAuth, logout)} />
     </div>
   );
 };
