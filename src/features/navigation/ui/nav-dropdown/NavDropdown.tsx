@@ -9,7 +9,11 @@ interface NavDropdownProps {
 }
 export const NavDropdown = ({ menuItems }: NavDropdownProps) => {
   return (
-    <DropdownWrapper direction="bottom" trigger={<UserImg />}>
+    <DropdownWrapper
+      className={styles.dropdown}
+      direction="bottom"
+      trigger={<UserImg />}
+    >
       <ul className={styles.list}>
         {menuItems.map((item, index) =>
           item.onClick ? (

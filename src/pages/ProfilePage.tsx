@@ -18,7 +18,7 @@ export const ProfilePage = () => {
   const [title, setTitle] = useState<string>(list[0].label);
 
   const { width } = useWindowSize();
-  const isMobile = width < 768;
+  const isMobile = width <= 768;
   return (
     <div className={styles.profile}>
       <header className={styles.header}>

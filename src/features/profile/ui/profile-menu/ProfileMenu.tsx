@@ -1,5 +1,5 @@
 import { DropdownWrapper } from '../../../../shared/ui/dropdown/DropdownWrapper';
-import { MdClose, MdMenu } from 'react-icons/md';
+import { MdMenu } from 'react-icons/md';
 import { SidebarItem } from '../../model/types';
 import styles from './ProfileMenu.module.css';
 import { createPortal } from 'react-dom';
@@ -34,14 +34,11 @@ export const ProfileMenu = ({
         {' '}
         <DropdownWrapper
           className={styles.dropdown}
+          classNameMenu={styles.menu}
           direction="right"
           onOpenChange={setIsOpen}
           trigger={(open) =>
-            open ? (
-              <MdClose className={styles.icon} />
-            ) : (
-              <MdMenu className={styles.icon} />
-            )
+            open ? <></> : <MdMenu className={styles.icon} />
           }
         >
           <ul className={styles.list}>
