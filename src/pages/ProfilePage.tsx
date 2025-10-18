@@ -4,21 +4,21 @@ import styles from '../features/profile/styles/ProfilePage.module.css';
 
 import { Logo } from '../shared/ui/logo/Logo';
 import { Section } from '../features/profile/components/section/Section';
-import { ProfileInfo } from '../features/profile/components/profile-info/ProfileInfo';
-import { Favorites } from '../features/profile/components/favorites/Favorites';
-import { Tikets } from '../features/profile/components/tikets/Tikets';
+import { sidebarItems } from '../features/profile/constants/profileConstants';
+import { useWindowSize } from '../shared/hooks/useWindowSize';
+import { ProfileMenu } from '../features/profile/ui/profile-menu/ProfileMenu';
+
 export const ProfilePage = () => {
   const text = 'Event Rave';
-  const list = [
-    { id: 'profile', label: 'Profile', component: <ProfileInfo /> },
-    { id: 'favorites', label: 'Favorites', component: <Favorites /> },
-    { id: 'tikets', label: 'Tickets', component: <Tikets /> },
-  ];
+  const list = sidebarItems;
+
   const [infoComponent, setInfoComponet] = useState<React.ReactNode>(
     list[0].component,
   );
   const [title, setTitle] = useState<string>(list[0].label);
 
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
   return (
     <div className={styles.profile}>
       <header className={styles.header}>
@@ -29,11 +29,20 @@ export const ProfilePage = () => {
 
       <div className="container">
         <main className={styles.content}>
-          <Sidebar
-            list={list}
-            onClick={setInfoComponet}
-            onTitleChange={setTitle}
-          />
+          {isMobile ? (
+            <ProfileMenu
+              list={sidebarItems}
+              onTitleChange={setTitle}
+              onClick={setInfoComponet}
+            />
+          ) : (
+            <Sidebar
+              list={list}
+              onClick={setInfoComponet}
+              onTitleChange={setTitle}
+            />
+          )}
+
           <Section component={infoComponent} title={title} />
         </main>
       </div>

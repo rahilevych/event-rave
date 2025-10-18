@@ -1,4 +1,4 @@
-export interface SideBarItem {
+export interface SidebarItem {
   id: string;
   label: string;
   component: React.ReactNode;

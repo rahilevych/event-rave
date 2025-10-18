@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from './Sidebar.module.css';
-import { SideBarItem } from '../../model/types';
+import { SidebarItem } from '../../model/types';
 type SidebarProps = {
-  list: SideBarItem[];
+  list: SidebarItem[];
   onClick: (node: React.ReactNode) => void;
   onTitleChange: (title: string) => void;
 };
@@ -10,7 +10,7 @@ type SidebarProps = {
 export const Sidebar = ({ list, onClick, onTitleChange }: SidebarProps) => {
   const [activeTab, setActiveTab] = useState(list[0].id);
 
-  const handleClick = (item: SideBarItem) => {
+  const handleClick = (item: SidebarItem) => {
     onClick(item.component);
     onTitleChange(item.label);
     setActiveTab(item.id);
