@@ -20,31 +20,10 @@
   max-width: 1440px;
   margin: 0 auto;
 }
-
-.signup,
-.login {
-  width: 130px;
-  height: 50px;
-}
-.login {
-  background-color: transparent;
-  color: var(--color-btn-dark);
-  border: 1px solid var(--color-btn-dark);
-}
-.buttons {
+.laptop-menu {
   display: flex;
-  align-items: space-between;
   align-items: center;
-  gap: 0.25rem;
-  width: auto;
-}
-
-@media (max-width: 1024px) {
-  .signup,
-  .login {
-    width: 110px;
-  }
-  .logo {
-    font-size: 24px;
-  }
+  justify-content: space-between;
+  gap: 3rem;
+  width: 100%;
 }
