@@ -18,10 +18,7 @@ export default class CategoryService {
   static async deleteCategory(id: number): Promise<AxiosResponse> {
     return api.delete(`/categories/${id}`);
   }
-  static async createCategory(
-    id: number,
-    category: Category,
-  ): Promise<AxiosResponse> {
-    return api.post(`/categories/${id}`, { category });
+  static async createCategory(category: Category): Promise<AxiosResponse> {
+    return api.post(`/categories`, { category });
   }
 }
