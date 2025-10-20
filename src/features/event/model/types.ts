@@ -1,0 +1,9 @@
+export interface Event {
+  title: string;
+  description: string;
+  date: string;
+  city: string;
+  venue: string;
+  imageUrl: string;
+  organizer: string;
+}
