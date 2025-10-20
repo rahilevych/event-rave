@@ -26,6 +26,7 @@ export const ProfileForm = ({ onCancel }: { onCancel: () => void }) => {
       id: user.id,
       fullName: values.fullName,
       email: values.email,
+      role: user.role,
     };
 
     setUser({ ...updatedData });
