@@ -6,4 +6,5 @@ export interface Event {
   venue: string;
   imageUrl: string;
   organizer: string;
+  price: number;
 }
