@@ -13,7 +13,7 @@ interface CategoryState {
   updateCategory: (id: number, data: Category) => Promise<void>;
 }
 
-export const useCategoryStote = create<CategoryState>((set) => ({
+export const useCategoryStore = create<CategoryState>((set) => ({
   category: null,
   categories: [],
   setCategory: (category: Category | null) => set({ category }),

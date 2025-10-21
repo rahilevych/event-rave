@@ -7,7 +7,7 @@ interface EventState {
   setEvent: (event: Event | null) => void;
   setEvents: (events: Event[] | []) => void;
   getEvent: (id: number) => Promise<void>;
-  getEvents: (categoryId: number) => Promise<void>;
+  getEvents: (categoryId: number) => Promise<Event[]>;
   createEvent: (event: Event) => Promise<void>;
   updateEvent: (id: number, event: Event) => Promise<void>;
   deleteEvent: (id: number) => Promise<void>;
@@ -21,6 +21,7 @@ export const useEventStore = create<EventState>((set) => ({
   getEvent: async (id: number) => {
     try {
       const response = await EventService.getEvent(id);
+      set({ event: response.data });
       console.log('respons of event', response);
     } catch (error) {
       console.log(error);
@@ -29,6 +30,8 @@ export const useEventStore = create<EventState>((set) => ({
   getEvents: async (categoryId: number) => {
     try {
       const response = await EventService.getEvents(categoryId);
+      // set({ events: response.data });
+      return response.data;
       console.log('  event', response);
     } catch (error) {
       console.log(error);
