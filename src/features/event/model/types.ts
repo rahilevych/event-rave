@@ -1,4 +1,4 @@
-export interface Event {
+export interface EventType {
   title: string;
   description: string;
   date: string;
@@ -6,4 +6,5 @@ export interface Event {
   venue: string;
   imageUrl: string;
   organizer: string;
+  price: number;
 }

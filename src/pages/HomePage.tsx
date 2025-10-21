@@ -4,16 +4,23 @@ import { Footer } from '../layouts/footer/Footer';
 import { Header } from '../layouts/header/Header';
 
 import styles from '../features/home/styles/HomePage.module.css';
+import { useCategoryStore } from '../features/category/model/CategoryStore';
+import { useEffect } from 'react';
 export const HomePage = () => {
+  const categories = useCategoryStore((state) => state.categories);
+  const getCategories = useCategoryStore((state) => state.getCategories);
+  useEffect(() => {
+    getCategories();
+  }, []);
   return (
     <div className="wrapper">
       <Header />
       <main className={styles.main}>
         <Hero />
         <section className={styles.section}>
-          <EventsSection title="Upcoming Events" />
-          <EventsSection title="Berlin Events" />
-          <EventsSection title="Next Month Events" />
+          {categories.map((category) => (
+            <EventsSection title={category.name} categoryId={category.id} />
+          ))}
         </section>
       </main>
       <Footer />

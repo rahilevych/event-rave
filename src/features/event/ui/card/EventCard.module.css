@@ -44,18 +44,15 @@
   font-size: 16px;
   color: var(--color-primary-dark);
 }
-.date,
-.location {
+
+.location,
+.venue,
+.city,
+.organizer {
   font-size: 12px;
   color: var(--color-text-accent-light);
 }
+.date,
 .price {
   font-size: 14px;
-}
-
-@media (max-width: 1024px) {
-  .card {
-    width: 250px;
-    height: 350px;
-  }
 }

@@ -5,11 +5,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { EventCard } from '../../ui/card/EventCard';
 import styles from './EventSlider.module.css';
-import { Event } from '../../../../shared/types/types';
+
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import { EventType } from '../../model/types';
 
 type EventSliderProps = {
-  events: Event[];
+  events: EventType[];
 };
 
 export const EventSlider = ({ events }: EventSliderProps) => {
@@ -18,7 +19,6 @@ export const EventSlider = ({ events }: EventSliderProps) => {
 
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
-
   return (
     <div className={styles.wrapper}>
       <button
