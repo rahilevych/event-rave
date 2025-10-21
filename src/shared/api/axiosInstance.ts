@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { AuthResponse } from '../../features/auth/model/AuthResponse';
 
-export const API_URL = 'http://localhost:5000';
-//export const API_URL = 'https://event-rave-back.onrender.com';
+export const API_URL = import.meta.env.VITE_API_URL;
+//export const API_URL = import.meta.env.VITE_API_URL_LOCAL;
+
 const api = axios.create({
   withCredentials: true,
   baseURL: API_URL,
