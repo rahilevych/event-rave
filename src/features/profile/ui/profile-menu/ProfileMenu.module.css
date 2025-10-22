@@ -6,7 +6,7 @@
 }
 
 .menu {
-  background-color: var(--color-primary-light-hover);
+  background-color: var(--color-primary-light);
   position: absolute;
   top: 0;
   left: 0;
@@ -37,7 +37,7 @@
 
 .icon {
   font-size: 24px;
-  color: var(--color-primary-light-hover);
+  color: var(--color-primary-light);
   pointer-events: none;
   position: relative;
   z-index: 1100;

@@ -12,7 +12,7 @@
 .btn {
   margin: 1rem 0;
   padding: 0.75rem 1.5rem;
-  background-color: var(--color-primary-light-hover);
+  background-color: var(--color-primary-light);
 }
 .user-info {
   display: flex;

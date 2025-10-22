@@ -11,6 +11,7 @@ export const NavDropdown = ({ menuItems }: NavDropdownProps) => {
   return (
     <DropdownWrapper
       className={styles.dropdown}
+      classNameMenu={styles.menu}
       direction="bottom"
       trigger={<UserImg />}
     >
@@ -22,7 +23,7 @@ export const NavDropdown = ({ menuItems }: NavDropdownProps) => {
             </li>
           ) : (
             <Link key={index} className={styles.item} to={item.path || '#'}>
-              {item.label}
+              <li> {item.label}</li>
             </Link>
           ),
         )}
