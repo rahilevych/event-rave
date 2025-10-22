@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import EventService from '../service/EventService';
 import { EventType } from './types';
+import { AxiosError } from 'axios';
 
 interface EventState {
   event: EventType | null;
@@ -25,7 +26,11 @@ export const useEventStore = create<EventState>((set) => ({
       set({ event: response.data });
       console.log('respons of event', response);
     } catch (error) {
-      console.log(error);
+      let message = 'Unknown error';
+      if (error instanceof AxiosError) {
+        message = error.response?.data?.message || error.message;
+      }
+      throw new Error(message);
     }
   },
   getEvents: async (categoryId: number) => {
@@ -35,7 +40,11 @@ export const useEventStore = create<EventState>((set) => ({
       return response.data;
       console.log('  event', response);
     } catch (error) {
-      console.log(error);
+      let message = 'Unknown error';
+      if (error instanceof AxiosError) {
+        message = error.response?.data?.message || error.message;
+      }
+      throw new Error(message);
     }
   },
   createEvent: async (event: EventType) => {
@@ -43,7 +52,11 @@ export const useEventStore = create<EventState>((set) => ({
       const response = await EventService.createEvent(event);
       console.log('created event ', response);
     } catch (error) {
-      console.log(error);
+      let message = 'Unknown error';
+      if (error instanceof AxiosError) {
+        message = error.response?.data?.message || error.message;
+      }
+      throw new Error(message);
     }
   },
   updateEvent: async (id: number, event: EventType) => {
@@ -51,7 +64,11 @@ export const useEventStore = create<EventState>((set) => ({
       const response = await EventService.updateEvent(id, event);
       console.log('updated event ', response);
     } catch (error) {
-      console.log(error);
+      let message = 'Unknown error';
+      if (error instanceof AxiosError) {
+        message = error.response?.data?.message || error.message;
+      }
+      throw new Error(message);
     }
   },
   deleteEvent: async (id: number) => {
@@ -59,7 +76,11 @@ export const useEventStore = create<EventState>((set) => ({
       const response = await EventService.deleteEvent(id);
       console.log('deleted event', response);
     } catch (error) {
-      console.log(error);
+      let message = 'Unknown error';
+      if (error instanceof AxiosError) {
+        message = error.response?.data?.message || error.message;
+      }
+      throw new Error(message);
     }
   },
 }));

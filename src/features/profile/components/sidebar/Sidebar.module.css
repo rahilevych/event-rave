@@ -34,6 +34,6 @@
 }
 .list > li:hover,
 .active {
-  background-color: var(--color-primary-light-hover);
+  background-color: var(--color-primary-light);
   color: var(--color-text-light);
 }
