@@ -8,6 +8,7 @@ import styles from './EventSlider.module.css';
 
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { EventType } from '../../model/types';
+import { Loader } from '../../../../shared/ui/loader/Loader';
 
 type EventSliderProps = {
   events: EventType[];
@@ -19,6 +20,10 @@ export const EventSlider = ({ events }: EventSliderProps) => {
 
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
+  if (!events || events.length === 0) {
+    return <Loader />;
+  }
+
   return (
     <div className={styles.wrapper}>
       <button

@@ -1,10 +1,13 @@
 import styles from './EventSection.module.css';
-
 import { Title } from '../../../../shared/ui/title/Title';
 import { EventSlider } from '../../ui/slider/EventSlider';
 import { useEventStore } from '../../model/EventStore';
-import { useEffect, useState } from 'react';
-import { EventType } from '../../model/types';
+
+import { useFetch } from '../../../../shared/hooks/useFetch';
+import { Loader } from '../../../../shared/ui/loader/Loader';
+import { useEffect } from 'react';
+import { ErrorState } from '../../../../shared/ui/error-state/ErrorState';
+import { EmptyState } from '../../../../shared/ui/empty-state/EmptyState';
 
 type EventSectionProps = {
   categoryId: number;
@@ -12,18 +15,15 @@ type EventSectionProps = {
 };
 
 export const EventsSection = ({ title, categoryId }: EventSectionProps) => {
-  const [events, setEvents] = useState<EventType[]>([]);
   const getEvents = useEventStore((state) => state.getEvents);
+  const { data: events, loading, error, execute } = useFetch(getEvents);
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      const data = await getEvents(categoryId);
-      setEvents(data);
-    };
-    fetchEvents();
-  }, [categoryId, getEvents]);
-  if (!events) return <p>Something went wrong. Try again later!</p>;
-  if (events.length === 0) return <p>There are no events</p>;
+    execute(categoryId);
+  }, [categoryId, execute]);
+  if (loading) return <Loader />;
+  if (error) return <ErrorState />;
+  if (!events?.length) return <EmptyState dataName="events" />;
 
   return (
     <section className={`container ${styles.events}`}>

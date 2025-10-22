@@ -1,4 +1,5 @@
 import { Button } from '../../../../shared/ui/Button/Button';
+import { Loader } from '../../../../shared/ui/loader/Loader';
 import { UserImg } from '../../../../shared/ui/user-img/UserImg';
 import { useUserStore } from '../../model/UserStore';
 import styles from './ProfileData.module.css';
@@ -9,7 +10,9 @@ interface ProfileDataProps {
 export const ProfileData = ({ onEdit }: ProfileDataProps) => {
   const user = useUserStore((state) => state.user);
 
-  if (!user) return <p>Loading...</p>;
+  if (!user) {
+    return <Loader />;
+  }
   return (
     <div className={styles.data}>
       <UserImg className={styles.img} />
