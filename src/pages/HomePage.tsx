@@ -30,23 +30,24 @@ export const HomePage = () => {
       <Header />
       <main className={styles.main}>
         <Hero />
-        <section className={styles.section}>
-          {loading ? (
-            <Loader />
-          ) : error ? (
-            <ErrorState />
-          ) : !categories?.length ? (
-            <EmptyState dataName="categories" />
-          ) : (
-            categories.map((category) => (
+
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <ErrorState />
+        ) : !categories?.length ? (
+          <EmptyState dataName="categories" />
+        ) : (
+          <section className={styles.section}>
+            {categories.map((category) => (
               <EventsSection
                 key={category.id}
                 title={category.name}
                 categoryId={category.id}
               />
-            ))
-          )}
-        </section>
+            ))}
+          </section>
+        )}
       </main>
       <Footer />
     </div>

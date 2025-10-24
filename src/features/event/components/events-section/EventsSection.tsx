@@ -19,7 +19,7 @@ export const EventsSection = ({ title, categoryId }: EventSectionProps) => {
   const { data: events, loading, error, execute } = useFetch(getEvents);
 
   useEffect(() => {
-    execute(categoryId);
+    execute({ categoryId: categoryId });
   }, [categoryId, execute]);
   if (loading) return <Loader />;
   if (error) return <ErrorState />;
