@@ -3,12 +3,18 @@ import api from '../../../shared/api/axiosInstance';
 import { EventType } from '../model/types';
 
 export default class EventService {
-  static async getEvents(categoryId?: number): Promise<AxiosResponse> {
-    if (categoryId) {
-      return api.get(`/events?categoryId=${categoryId}`);
-    } else {
-      return api.get(`/events`);
-    }
+  static async getEvents(params?: {
+    categoryId?: number;
+    searchText?: string;
+  }): Promise<AxiosResponse> {
+    const query = new URLSearchParams();
+
+    if (params?.categoryId)
+      query.append('categoryId', params.categoryId.toString());
+    if (params?.searchText) query.append('searchText', params.searchText);
+
+    const url = query.toString() ? `/events?${query.toString()}` : '/events';
+    return api.get(url);
   }
   static async getEvent(id: number): Promise<AxiosResponse> {
     return api.get(`/events/${id}`);
