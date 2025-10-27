@@ -1,0 +1,16 @@
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1.5px solid var(--color-border-dark);
+  padding: 2rem 0;
+  width: 100%;
+  height: auto;
+  min-height: 100px;
+}
+.date-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
