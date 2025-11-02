@@ -9,7 +9,7 @@ interface CategoryState {
   setCategory: (category: Category | null) => void;
   createCategory: (data: Category) => Promise<void>;
   deleteCategory: (id: number) => Promise<void>;
-  getCategory: (id: number) => Promise<void>;
+  getCategory: (id: number) => Promise<Category>;
   getCategories: () => Promise<Category[]>;
   updateCategory: (id: number, data: Category) => Promise<void>;
 }
@@ -45,7 +45,7 @@ export const useCategoryStore = create<CategoryState>((set) => ({
   getCategory: async (id: number) => {
     try {
       const response = await CategoryService.getCategory(id);
-      console.log(response);
+      return response.data;
     } catch (error) {
       let message = 'Unknown error';
       if (error instanceof AxiosError) {

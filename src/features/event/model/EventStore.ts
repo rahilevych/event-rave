@@ -12,7 +12,7 @@ interface EventState {
   events: EventType[] | [];
   setEvent: (event: EventType | null) => void;
   setEvents: (events: EventType[] | []) => void;
-  getEvent: (id: number) => Promise<void>;
+  getEvent: (id: number) => Promise<EventType>;
   getEvents: (params?: GetEventsParams) => Promise<EventType[]>;
   createEvent: (event: EventType) => Promise<void>;
   updateEvent: (id: number, event: EventType) => Promise<void>;
@@ -27,7 +27,8 @@ export const useEventStore = create<EventState>((set) => ({
   getEvent: async (id: number) => {
     try {
       const response = await EventService.getEvent(id);
-      set({ event: response.data });
+      // set({ event: response.data });
+      return response.data;
       console.log('respons of event', response);
     } catch (error) {
       console.error('Error fetching events:', error);
