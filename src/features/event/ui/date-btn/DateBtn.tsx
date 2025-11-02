@@ -4,6 +4,6 @@ interface DateBtnProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
-export const DateBtn = ({ children, ...props }: DateBtnProps) => {
+export const DateBtn = ({ children }: DateBtnProps) => {
   return <div className={styles.button}>{children}</div>;
 };
