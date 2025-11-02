@@ -2,16 +2,15 @@ import { EventsSection } from '../features/event/components/events-section/Event
 import { Hero } from '../features/home/components/hero/Hero';
 import { Footer } from '../layouts/footer/Footer';
 import { Header } from '../layouts/header/Header';
-
 import styles from '../features/home/styles/HomePage.module.css';
 import { useCategoryStore } from '../features/category/model/CategoryStore';
-
 import { useFetch } from '../shared/hooks/useFetch';
-import { Loader } from '../shared/ui/loader/Loader';
 import { ErrorState } from '../shared/ui/error-state/ErrorState';
 import { EmptyState } from '../shared/ui/empty-state/EmptyState';
 import { Category } from '../features/category/model/types';
 import { useEffect } from 'react';
+import { EventSectionSkeleton } from '../features/event/components/events-section/EventSectionSkeleton';
+
 export const HomePage = () => {
   const getCategories = useCategoryStore((state) => state.getCategories);
   const {
@@ -31,23 +30,23 @@ export const HomePage = () => {
       <main className={styles.main}>
         <Hero />
 
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <ErrorState />
-        ) : !categories?.length ? (
-          <EmptyState dataName="categories" />
-        ) : (
-          <section className={styles.section}>
-            {categories.map((category) => (
+        <section className={styles.section}>
+          {loading ? (
+            [...Array(3)].map((_, i) => <EventSectionSkeleton key={i} />)
+          ) : error ? (
+            <ErrorState />
+          ) : !categories?.length ? (
+            <EmptyState dataName="categories" />
+          ) : (
+            categories.map((category) => (
               <EventsSection
                 key={category.id}
                 title={category.name}
                 categoryId={category.id}
               />
-            ))}
-          </section>
-        )}
+            ))
+          )}
+        </section>
       </main>
       <Footer />
     </div>

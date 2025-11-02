@@ -41,6 +41,7 @@
 .hidden {
   visibility: hidden;
 }
+
 @media (max-width: 768px) {
   .prev,
   .next {

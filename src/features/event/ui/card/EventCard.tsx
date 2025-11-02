@@ -3,9 +3,9 @@ import { converDate } from '../../../../shared/lib/convertDate';
 import { EventType } from '../../model/types';
 import styles from './EventCard.module.css';
 
-type EventCardProps = {
+interface EventCardProps {
   card: EventType;
-};
+}
 export const EventCard = ({ card }: EventCardProps) => {
   const navigate = useNavigate();
 
