@@ -5,11 +5,12 @@
 }
 .main {
   flex: 1;
-  margin-top: var(--height-header);
+
   margin-bottom: 50px;
 }
 
 .info {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -17,4 +18,11 @@
   padding: 2rem 0;
   gap: 3rem;
   margin-top: 50px;
+}
+
+@media (max-width: 1200px) {
+  .info {
+    flex-direction: column;
+    align-items: center;
+  }
 }

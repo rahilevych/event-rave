@@ -9,6 +9,8 @@ import { useFetch } from '../shared/hooks/useFetch';
 import { EventType } from '../features/event/model/types';
 import { EventDetailed } from '../features/event/components/event-detailed/EventDetailed';
 import { EventPayment } from '../features/event/components/event-payment/EventPayment';
+import { EventDetailedSkeleton } from '../features/event/components/event-detailed/EventDetailedSkeleton';
+import { EventPaymentSkeleton } from '../features/event/components/event-payment/EventPaymentSkeleton';
 export const EventPage = () => {
   const { id } = useParams();
   const parsedId = Number(id);
@@ -26,8 +28,19 @@ export const EventPage = () => {
       <main className={styles.main}>
         <div className={'container'}>
           <div className={styles.info}>
-            <EventDetailed event={event} />
-            <EventPayment />
+            {!event ? (
+              <>
+                {' '}
+                <EventDetailedSkeleton />
+                <EventPaymentSkeleton />
+              </>
+            ) : (
+              <>
+                {' '}
+                <EventDetailed event={event} />
+                <EventPayment event={event} />
+              </>
+            )}
           </div>
         </div>
       </main>
