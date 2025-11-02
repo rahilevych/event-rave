@@ -3,7 +3,7 @@ import { EventType } from '../../model/types';
 import { EventHeader } from '../../ui/event-header/EventHeader';
 import styles from './EventDetailed.module.css';
 interface EventDetailedProps {
-  event: EventType | null;
+  event: EventType;
 }
 export const EventDetailed = ({ event }: EventDetailedProps) => {
   return (
@@ -15,8 +15,13 @@ export const EventDetailed = ({ event }: EventDetailedProps) => {
         <EventHeader event={event} />
         <p className={styles.description}>{event?.description}</p>
         <span>General info:</span>
-        <p>Location: {event?.venue}</p>
-        <p>Data: {converDate(event?.date)}</p>
+        <p>
+          <span>Location: </span> {event?.venue}
+        </p>
+        <p>
+          <span>Date: </span>
+          {converDate(event?.date)}
+        </p>
       </div>
     </div>
   );
