@@ -16,7 +16,7 @@ export const SearchSection = () => {
   const [results, setResults] = useState<EventType[] | []>([]);
   const sectionRef = useRef<HTMLDivElement>(null);
   const getEvents = useEventStore((state) => state.getEvents);
-  const { execute } = useFetch(getEvents);
+  const { execute, loading } = useFetch(getEvents);
 
   useClickOutside(sectionRef, () => setShowResults(false));
 
@@ -50,7 +50,9 @@ export const SearchSection = () => {
           setQuery={setQuery}
           setShowResults={setShowResults}
         />
-        {showResults && query && <SearchResult results={results} />}
+        {showResults && query && (
+          <SearchResult loading={loading} results={results} />
+        )}
       </div>
     </>
   );
