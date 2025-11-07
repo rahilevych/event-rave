@@ -8,4 +8,5 @@
   border: 1.5px solid var(--color-border-dark);
   border-radius: 50px;
   cursor: pointer;
+  color: var(--color-text);
 }

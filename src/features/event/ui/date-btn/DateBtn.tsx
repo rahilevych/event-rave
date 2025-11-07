@@ -2,8 +2,13 @@ import styles from './DateBtn.module.css';
 
 interface DateBtnProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
+  isActive?: boolean;
 }
 
-export const DateBtn = ({ children }: DateBtnProps) => {
-  return <div className={styles.button}>{children}</div>;
+export const DateBtn = ({ children, ...props }: DateBtnProps) => {
+  return (
+    <button className={`${styles.button} `} {...props}>
+      {children}
+    </button>
+  );
 };
