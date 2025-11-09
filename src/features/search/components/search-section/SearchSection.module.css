@@ -1,6 +1,7 @@
 .search-section {
   position: relative;
   width: 100%;
+  max-width: 700px;
   z-index: 20;
 }
 .overlay {

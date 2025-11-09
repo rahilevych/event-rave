@@ -1,5 +1,5 @@
 @import './variables.css';
-
+@import 'react-day-picker/dist/style.css';
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +8,13 @@
 
 html {
   box-sizing: border-box;
+}
+.rdp-root {
+  --rdp-accent-color: var(
+    --color-primary-light
+  ); /* Change the accent color to indigo. */
+  --rdp-accent-background-color: #f0f0f0; /* Change the accent background color. */
+  /* Add more CSS variables here. */
 }
 
 body {
