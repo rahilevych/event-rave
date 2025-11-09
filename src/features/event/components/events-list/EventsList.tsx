@@ -1,29 +1,25 @@
-import { useEffect, useState } from 'react';
-import { useFetch } from '../../../../shared/hooks/useFetch';
-import { useEventStore } from '../../model/EventStore';
+import { MdSearch } from 'react-icons/md';
 import { EventType } from '../../model/types';
 import { EventCard } from '../../ui/card/EventCard';
 import styles from './EventsList.module.css';
-
 interface EventListProps {
-  categoryId?: number;
+  events: EventType[];
 }
-export const EventsList = ({ categoryId }: EventListProps) => {
-  const [events, setEvents] = useState<EventType[] | []>([]);
-  const getEvents = useEventStore((state) => state.getEvents);
-  const { execute } = useFetch(getEvents);
-
-  useEffect(() => {
-    execute({ categoryId: categoryId }).then((res: EventType[]) =>
-      setEvents(res || []),
-    );
-  }, [execute]);
-
+export const EventsList = ({ events }: EventListProps) => {
   return (
-    <section className={styles.events}>
-      {events.map((event) => (
-        <EventCard card={event} />
-      ))}
+    <section className={styles.eventsList}>
+      {events.length !== 0 ? (
+        <div className={styles.events}>
+          {events.map((event) => (
+            <EventCard card={event} />
+          ))}
+        </div>
+      ) : (
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+          <MdSearch size={50} color="#ccc" />
+          <p>No results found</p>
+        </div>
+      )}
     </section>
   );
 };

@@ -1,15 +1,45 @@
-import { filters } from '../../constants/constatnts';
+import { converDate } from '../../../../shared/lib/convertDate';
+import { FilterKey, filters } from '../../constants/constatnts';
 import { DateBtn } from '../../ui/date-btn/DateBtn';
 import styles from './FiltersSection.module.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
-export const FiltersSection = () => {
+interface FiltersSectionProps {
+  activeFilter: FilterKey;
+  setActiveFilter: (key: FilterKey) => void;
+  onCalendarClick: () => void;
+  selectedDate: Date | null;
+  setSelectedDate: (date: Date | null) => void;
+}
+export const FiltersSection = ({
+  activeFilter,
+  setActiveFilter,
+  onCalendarClick,
+  selectedDate,
+  setSelectedDate,
+}: FiltersSectionProps) => {
+  const handleFilterClick = (key: FilterKey) => {
+    setActiveFilter(key);
+    if (key === 'calendar') onCalendarClick?.();
+  };
+
   return (
     <section className={styles.filters}>
       <div className={styles['date-buttons']}>
         {filters.map((filter) => (
-          <DateBtn>
+          <DateBtn
+            key={filter.key}
+            isActive={activeFilter === filter.key}
+            onClick={() => handleFilterClick(filter.key)}
+            onClear={() => {
+              setActiveFilter('all');
+              setSelectedDate(null);
+            }}
+          >
             {filter.icon}
-            {filter.label}
+            {filter.key === 'calendar' && selectedDate
+              ? converDate(selectedDate.toString())
+              : filter.label}
           </DateBtn>
         ))}
       </div>
