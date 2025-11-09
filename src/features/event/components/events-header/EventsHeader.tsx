@@ -18,7 +18,7 @@ export const EventsHeader = ({ categoryId }: EventsHeaderProps) => {
   return (
     <section className={styles.header}>
       <h2 className={styles.title}>{category?.name} events</h2>
-      <p className={styles.description}>description</p>
+      <p className={styles.description}>{category?.description}</p>
     </section>
   );
 };
