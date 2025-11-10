@@ -2,11 +2,16 @@ import { MdSearch } from 'react-icons/md';
 import { EventType } from '../../model/types';
 import { EventCard } from '../../ui/card/EventCard';
 import styles from './EventsList.module.css';
+import { useEventStore } from '../../model/EventStore';
+import { EventsListSkeleton } from './EventsListSkeleton';
 interface EventListProps {
   events: EventType[];
 }
 export const EventsList = ({ events }: EventListProps) => {
-  return (
+  const loading = useEventStore((state) => state.loading);
+  return loading ? (
+    <EventsListSkeleton />
+  ) : (
     <section className={styles.eventsList}>
       {events.length !== 0 ? (
         <div className={styles.events}>

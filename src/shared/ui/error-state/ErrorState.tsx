@@ -1,9 +1,11 @@
 import styles from './ErrorState.module.css';
-
-export const ErrorState = () => {
+interface ErrorState {
+  errorNotification: string;
+}
+export const ErrorState = ({ errorNotification }: ErrorState) => {
   return (
     <div className={styles.container}>
-      <p>Something went wrong. Try again later. </p>
+      <p>{errorNotification} </p>
     </div>
   );
 };
