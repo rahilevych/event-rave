@@ -8,34 +8,55 @@ interface GetEventsParams {
 }
 
 interface EventState {
-  getEvent: (id: number) => Promise<EventType>;
-  getEvents: (params?: GetEventsParams) => Promise<EventType[]>;
+  eventsByCategory: Record<number, EventType[]>;
+  loading: boolean;
+  getEvent: (id: number) => Promise<void>;
+  getEvents: (params?: GetEventsParams) => Promise<void>;
   createEvent: (event: EventType) => Promise<EventType>;
   updateEvent: (id: number, event: EventType) => Promise<EventType>;
   deleteEvent: (id: number) => Promise<EventType>;
   error: string;
+  event: EventType | null;
 }
 
 export const useEventStore = create<EventState>((set) => ({
+  loading: false,
+  eventsByCategory: {},
   error: '',
+  event: null,
   getEvent: async (id: number) => {
-    set({ error: '' });
+    set({ loading: true, error: '' });
     try {
       const response = await EventService.getEvent(id);
-      return response.data;
+      set({ event: response.data });
     } catch (error) {
       set({ error: 'Failed to get event' });
       console.error('Error fetching events:', error);
+    } finally {
+      set({ loading: false });
     }
   },
   getEvents: async ({ categoryId, searchText }: GetEventsParams = {}) => {
-    set({ error: '' });
+    set({ loading: true, error: '' });
     try {
       const response = await EventService.getEvents({ categoryId, searchText });
-      return response.data;
+      const sorted = [...response.data].sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      );
+      if (categoryId !== undefined) {
+        set((state) => ({
+          eventsByCategory: { ...state.eventsByCategory, [categoryId]: sorted },
+        }));
+      } else {
+        set((state) => ({
+          eventsByCategory: { ...state.eventsByCategory, 0: sorted },
+        }));
+      }
     } catch (error) {
       set({ error: 'Failed to load events' });
       console.error('Error fetching events:', error);
+    } finally {
+      set({ loading: false });
     }
   },
   createEvent: async (event: EventType) => {
