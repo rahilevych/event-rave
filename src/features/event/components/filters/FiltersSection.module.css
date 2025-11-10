@@ -16,3 +16,11 @@
   flex-wrap: wrap;
   gap: 0.5rem;
 }
+.skeleton-btn {
+  width: 80px;
+  height: 32px;
+  border-radius: 50px;
+  background-color: #e0e0e0;
+  animation: pulse 1.5s infinite ease-in-out;
+  margin-right: 8px;
+}

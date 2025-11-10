@@ -5,10 +5,8 @@ import { FiltersSection } from '../features/event/components/filters/FiltersSect
 import { EventsList } from '../features/event/components/events-list/EventsList';
 import { useParams } from 'react-router-dom';
 import { EventsHeader } from '../features/event/components/events-header/EventsHeader';
-import { useFetch } from '../shared/hooks/useFetch';
 import { useEventStore } from '../features/event/model/EventStore';
 import { useEffect, useMemo, useState } from 'react';
-import { EventType } from '../features/event/model/types';
 import { filterEvents } from '../shared/lib/filterEvents';
 import { FilterKey } from '../features/event/constants/constatnts';
 import { CalendarModal } from '../features/event/components/calendar-modal/CalendarModal';
@@ -18,26 +16,18 @@ export const EventsPage = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const { categoryId } = useParams();
   const parsedCategoryId = Number(categoryId);
-  const [events, setEvents] = useState<EventType[] | []>([]);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const getEvents = useEventStore((state) => state.getEvents);
-  const { execute } = useFetch(getEvents);
+  const eventsByCategory = useEventStore((state) => state.eventsByCategory);
 
   useEffect(() => {
-    execute({ categoryId: parsedCategoryId }).then((res: EventType[]) => {
-      if (!res) return;
+    getEvents({ categoryId: parsedCategoryId });
+  }, []);
 
-      const sorted = [...res].sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-      );
-      setEvents(sorted);
-    });
-  }, [execute]);
-
-  const filteredEvents = useMemo(
-    () => filterEvents(events, activeFilter, selectedDate),
-    [events, activeFilter, selectedDate],
-  );
+  const filteredEvents = useMemo(() => {
+    const events = eventsByCategory[parsedCategoryId] || [];
+    return filterEvents(events, activeFilter, selectedDate);
+  }, [eventsByCategory, parsedCategoryId, activeFilter, selectedDate]);
 
   return (
     <div className="wrapper">
