@@ -6,10 +6,9 @@ import { EventCard } from '../../ui/card/EventCard';
 import styles from './EventSlider.module.css';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { EventType } from '../../model/types';
-import { EventSliderSkeleton } from './EventSliderSkeleton';
 
 interface EventSliderProps {
-  events: EventType[] | [];
+  events: EventType[];
 }
 
 export const EventSlider = ({ events }: EventSliderProps) => {
@@ -19,7 +18,7 @@ export const EventSlider = ({ events }: EventSliderProps) => {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
 
-  return events.length > 0 ? (
+  return (
     <div className={styles.wrapper}>
       <button
         ref={prevRef}
@@ -66,7 +65,5 @@ export const EventSlider = ({ events }: EventSliderProps) => {
         ))}
       </Swiper>
     </div>
-  ) : (
-    <EventSliderSkeleton />
   );
 };

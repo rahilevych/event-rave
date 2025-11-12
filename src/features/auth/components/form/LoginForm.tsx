@@ -9,7 +9,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FormField } from '../../../../shared/ui/form-field/FormField';
 import { Button } from '../../../../shared/ui/Button/Button';
 import { LoginData, loginSchema } from '../../schemas/loginSchema';
-import { useAuthStore } from '../../model/AuthStore';
+
+import { useAuth } from '../../hooks/useAuth';
 
 export const LoginForm = () => {
   const {
@@ -17,13 +18,13 @@ export const LoginForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginData>({ resolver: zodResolver(loginSchema) });
-  const login = useAuthStore((state) => state.login);
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const onSubmit = async (data: LoginData) => {
     try {
-      await login(data.email, data.password);
-      navigate('/profile', { replace: true });
+      await login.mutateAsync({ email: data.email, password: data.password });
+      navigate('/', { replace: true });
     } catch (error) {
       console.error('Login error', error);
     }

@@ -5,11 +5,11 @@ import { FiltersSection } from '../features/event/components/filters/FiltersSect
 import { EventsList } from '../features/event/components/events-list/EventsList';
 import { useParams } from 'react-router-dom';
 import { EventsHeader } from '../features/event/components/events-header/EventsHeader';
-import { useEventStore } from '../features/event/model/EventStore';
-import { useEffect, useMemo, useState } from 'react';
-import { filterEvents } from '../shared/lib/filterEvents';
+import { useState } from 'react';
+
 import { FilterKey } from '../features/event/constants/constatnts';
 import { CalendarModal } from '../features/event/components/calendar-modal/CalendarModal';
+import { useEvents } from '../features/event/hooks/useEvents';
 
 export const EventsPage = () => {
   const [activeFilter, setActiveFilter] = useState<FilterKey | 'all'>('all');
@@ -17,49 +17,45 @@ export const EventsPage = () => {
   const { categoryId } = useParams();
   const parsedCategoryId = Number(categoryId);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const getEvents = useEventStore((state) => state.getEvents);
-  const eventsByCategory = useEventStore((state) => state.eventsByCategory);
+  const { data: events, isLoading } = useEvents({
+    categoryId: parsedCategoryId,
+  });
 
-  useEffect(() => {
-    getEvents({ categoryId: parsedCategoryId });
-  }, []);
-
-  const filteredEvents = useMemo(() => {
-    const events = eventsByCategory[parsedCategoryId] || [];
-    return filterEvents(events, activeFilter, selectedDate);
-  }, [eventsByCategory, parsedCategoryId, activeFilter, selectedDate]);
+  if (isLoading) return <p>loading</p>;
 
   return (
-    <div className="wrapper">
-      <Header />
-      <main className={styles.main}>
-        <div className="container">
-          <EventsHeader categoryId={parsedCategoryId} />
-          <FiltersSection
-            activeFilter={activeFilter}
-            setActiveFilter={setActiveFilter}
-            onCalendarClick={() => setIsCalendarOpen(true)}
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
-          />
-          {isCalendarOpen && (
-            <CalendarModal
+    events && (
+      <div className="wrapper">
+        <Header />
+        <main className={styles.main}>
+          <div className="container">
+            <EventsHeader categoryId={parsedCategoryId} />
+            <FiltersSection
+              activeFilter={activeFilter}
+              setActiveFilter={setActiveFilter}
+              onCalendarClick={() => setIsCalendarOpen(true)}
               selectedDate={selectedDate}
-              onSelectDate={(date) => {
-                setSelectedDate(date);
-                setActiveFilter('calendar');
-                setIsCalendarOpen(false);
-              }}
-              onClose={() => {
-                setIsCalendarOpen(false);
-              }}
+              setSelectedDate={setSelectedDate}
             />
-          )}
-          <EventsList events={filteredEvents} />
-        </div>
-      </main>
+            {isCalendarOpen && (
+              <CalendarModal
+                selectedDate={selectedDate}
+                onSelectDate={(date) => {
+                  setSelectedDate(date);
+                  setActiveFilter('calendar');
+                  setIsCalendarOpen(false);
+                }}
+                onClose={() => {
+                  setIsCalendarOpen(false);
+                }}
+              />
+            )}
+            <EventsList loading={isLoading} events={events} />
+          </div>
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    )
   );
 };

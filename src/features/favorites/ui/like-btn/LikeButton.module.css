@@ -1,0 +1,14 @@
+.button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+  z-index: 20;
+}
+.icon {
+  width: 2rem;
+  height: 2rem;
+}
+.liked {
+  color: red;
+}

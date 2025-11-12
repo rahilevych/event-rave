@@ -7,7 +7,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import { FormField } from '../../../../shared/ui/form-field/FormField';
 import { RegisterData, registerSchema } from '../../schemas/registerSchema';
-import { useAuthStore } from '../../model/AuthStore';
+import { useAuth } from '../../hooks/useAuth';
 const RegisterForm = () => {
   const {
     register,
@@ -17,14 +17,18 @@ const RegisterForm = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const registration = useAuthStore((state) => state.registration);
+  const { registration } = useAuth();
 
   const navigate = useNavigate();
 
   const onSubmit = async (data: RegisterData) => {
     try {
-      await registration(data.yourName, data.email, data.password);
-      navigate('/profile', { replace: true });
+      await registration.mutateAsync({
+        fullName: data.yourName,
+        email: data.email,
+        password: data.password,
+      });
+      navigate('/', { replace: true });
     } catch (error) {
       console.error('Login error', error);
     }

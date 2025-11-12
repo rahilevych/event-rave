@@ -1,17 +1,16 @@
-import { useAuthStore } from '../features/auth/model/AuthStore';
 import '../shared/styles/global.css';
 import { useEffect } from 'react';
 
 import { AppRoutes } from './routes/AppRoutes';
+import { useAuth } from '../features/auth/hooks/useAuth';
 
 function App() {
-  const checkAuth = useAuthStore((state) => state.checkAuth);
   let refreshCalled = false;
-
+  const { checkAuth } = useAuth();
   useEffect(() => {
     if (!refreshCalled) {
       refreshCalled = true;
-      checkAuth();
+      checkAuth.mutate();
     }
   }, []);
 
