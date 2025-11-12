@@ -3,6 +3,8 @@ import { MdFavorite } from 'react-icons/md';
 import styles from './LikeButton.module.css';
 
 import { useToggleLike } from '../../../event/hooks/useEvents';
+import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../../../auth/model/AuthStore';
 
 interface LikeButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -14,10 +16,17 @@ export const LikeButton = ({
   likedByUser,
   ...props
 }: LikeButtonProps) => {
+  const navigate = useNavigate();
+  const { isAuth } = useAuthStore.getState();
   const toggleLike = useToggleLike();
+
   const handleLikeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    toggleLike.mutate(eventId);
+    if (isAuth) {
+      toggleLike.mutate(eventId);
+    } else {
+      navigate('/login');
+    }
   };
   return (
     <button

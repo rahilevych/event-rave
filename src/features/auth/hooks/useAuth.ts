@@ -28,6 +28,7 @@ export const useAuth = () => {
     onSuccess: (data) => {
       localStorage.setItem('token', data.token);
       queryClient.setQueryData(['auth'], { isAuth: true });
+      queryClient.invalidateQueries({ queryKey: ['events'] });
       setUser(data.user);
       setIsAuth(true);
       setToken(data.token);
@@ -42,6 +43,7 @@ export const useAuth = () => {
       localStorage.removeItem('token');
       queryClient.setQueryData(['auth'], { isAuth: false });
       queryClient.removeQueries({ queryKey: ['user'] });
+      queryClient.invalidateQueries({ queryKey: ['events'] });
       setIsAuth(false);
       setToken(null);
     },
