@@ -28,4 +28,8 @@ export default class EventService {
   static async createEvent(event: EventType) {
     return api.post('/events', event);
   }
+  static async toggleLike(eventId: number) {
+    console.log(eventId);
+    return api.put(`/likes/${eventId}/toggle`);
+  }
 }
