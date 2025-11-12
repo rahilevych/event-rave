@@ -8,8 +8,8 @@
 .menu {
   background-color: var(--color-primary-light);
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -32px;
+  left: -32px;
   width: 60%;
   height: 100vh;
 }
