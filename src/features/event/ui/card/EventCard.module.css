@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,4 +56,24 @@
 .date,
 .price {
   font-size: 14px;
+}
+
+@media (max-width: 425px) {
+  .card {
+    width: 100%;
+    height: 350px;
+  }
+  .title {
+    font-size: 14px;
+  }
+  .location,
+  .venue,
+  .city,
+  .organizer {
+    font-size: 11px;
+  }
+  .date,
+  .price {
+    font-size: 12px;
+  }
 }

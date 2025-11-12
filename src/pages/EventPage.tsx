@@ -2,22 +2,17 @@ import { useParams } from 'react-router-dom';
 import { Header } from '../layouts/header/Header';
 import { Footer } from '../layouts/footer/Footer';
 import styles from '../features/event/styles/EventPage.module.css';
-import { useEffect } from 'react';
-import { useEventStore } from '../features/event/model/EventStore';
 import { EventDetailed } from '../features/event/components/event-detailed/EventDetailed';
 import { EventPayment } from '../features/event/components/event-payment/EventPayment';
 import { EventDetailedSkeleton } from '../features/event/components/event-detailed/EventDetailedSkeleton';
 import { EventPaymentSkeleton } from '../features/event/components/event-payment/EventPaymentSkeleton';
+import { useEvent } from '../features/event/hooks/useEvents';
 
 export const EventPage = () => {
   const { id } = useParams();
   const parsedId = Number(id);
-  const getEvent = useEventStore((state) => state.getEvent);
-  const event = useEventStore((state) => state.event);
 
-  useEffect(() => {
-    getEvent(parsedId);
-  }, []);
+  const { data: event } = useEvent(parsedId);
 
   return (
     <div className="wrapper">

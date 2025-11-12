@@ -5,11 +5,12 @@ import { useUserStore } from '../../model/UserStore';
 import { Button } from '../../../../shared/ui/Button/Button';
 import { FormField } from '../../../../shared/ui/form-field/FormField';
 import styles from './ProfileForm.module.css';
+import { useUser } from '../../../auth/hooks/useUser';
 
 export const ProfileForm = ({ onCancel }: { onCancel: () => void }) => {
   const user = useUserStore((state) => state.user);
   const setUser = useUserStore((state) => state.setUser);
-  const updateUser = useUserStore((state) => state.updateUser);
+  const { updateUser } = useUser();
   const {
     register,
     handleSubmit,
@@ -30,7 +31,7 @@ export const ProfileForm = ({ onCancel }: { onCancel: () => void }) => {
     };
 
     setUser({ ...updatedData });
-    await updateUser(user.id, updatedData);
+    await updateUser.mutateAsync({ id: user.id, user: updatedData });
     onCancel();
   };
   return (

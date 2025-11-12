@@ -6,11 +6,12 @@ import MobileSearch from '../../../search/components/mobile/MobileSearch';
 import { useAuthStore } from '../../../auth/model/AuthStore';
 import { getMenuItems } from '../../../../config/menu-navigation';
 import { NavDropdown } from '../../ui/nav-dropdown/NavDropdown';
+import { useAuth } from '../../../auth/hooks/useAuth';
 
 export const MobileMenu = () => {
   const [isSearchOpened, setIsSearchOpened] = useState(false);
   const isAuth = useAuthStore((state) => state.isAuth);
-  const logout = useAuthStore((state) => state.logout);
+  const { logout } = useAuth();
   return (
     <div data-testid="mobile-menu" className={styles.menu}>
       {isSearchOpened && (
@@ -26,7 +27,7 @@ export const MobileMenu = () => {
       >
         <MdSearch className={styles.icon} />
       </button>{' '}
-      <NavDropdown menuItems={getMenuItems(isAuth, logout)} />
+      <NavDropdown menuItems={getMenuItems(isAuth, logout.mutateAsync)} />
     </div>
   );
 };

@@ -1,33 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './SearchSection.module.css';
 
 import { useClickOutside } from '../../../../shared/hooks/useClickOutside';
-
 import { SearchResult } from '../../ui/result/SearchResult';
 import { Search } from '../../ui/search/Search';
 import { createPortal } from 'react-dom';
-
-import { useEventStore } from '../../../event/model/EventStore';
+import { useEvents } from '../../../event/hooks/useEvents';
 
 export const SearchSection = () => {
   const [query, setQuery] = useState('');
   const [showResults, setShowResults] = useState(false);
-
   const sectionRef = useRef<HTMLDivElement>(null);
-  const getEvents = useEventStore((state) => state.getEvents);
-  const loading = useEventStore((state) => state.loading);
-  const eventsByCategory = useEventStore((state) => state.eventsByCategory);
-  const events = eventsByCategory[0] || [];
+  const { data: events, isLoading } = useEvents({ searchText: query });
 
   useClickOutside(sectionRef, () => setShowResults(false));
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      getEvents({ searchText: query });
-    }, 500);
-
-    return () => clearTimeout(handler);
-  }, [query]);
 
   return (
     <>
@@ -46,7 +32,7 @@ export const SearchSection = () => {
           setShowResults={setShowResults}
         />
         {showResults && query && (
-          <SearchResult loading={loading} results={events} />
+          <SearchResult loading={isLoading} results={events ?? []} />
         )}
       </div>
     </>

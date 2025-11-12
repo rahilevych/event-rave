@@ -8,4 +8,5 @@ export interface EventType {
   imageUrl: string;
   organizer: string;
   price: number;
+  likedByUser: boolean;
 }
