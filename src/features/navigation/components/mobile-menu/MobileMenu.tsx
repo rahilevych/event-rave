@@ -7,6 +7,7 @@ import { useAuthStore } from '../../../auth/model/AuthStore';
 import { getMenuItems } from '../../../../config/menu-navigation';
 import { NavDropdown } from '../../ui/nav-dropdown/NavDropdown';
 import { useAuth } from '../../../auth/hooks/useAuth';
+import { HeartBtn } from '../../../../shared/ui/heart-btn/HeartBtn';
 
 export const MobileMenu = () => {
   const [isSearchOpened, setIsSearchOpened] = useState(false);
@@ -27,6 +28,7 @@ export const MobileMenu = () => {
       >
         <MdSearch className={styles.icon} />
       </button>{' '}
+      <HeartBtn className={styles.icon} />
       <NavDropdown menuItems={getMenuItems(isAuth, logout.mutateAsync)} />
     </div>
   );

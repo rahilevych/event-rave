@@ -16,7 +16,7 @@ export const EventsList = ({ events, loading }: EventListProps) => {
       {events.length !== 0 ? (
         <div className={styles.events}>
           {events.map((event) => (
-            <EventCard card={event} />
+            <EventCard key={event.id} card={event} />
           ))}
         </div>
       ) : (
