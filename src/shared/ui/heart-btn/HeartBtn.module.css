@@ -1,0 +1,6 @@
+.icon {
+  color: var(--color-primary-light);
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+}
