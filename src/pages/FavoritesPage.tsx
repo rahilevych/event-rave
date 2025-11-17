@@ -5,12 +5,10 @@ import { EventType } from '../features/event/model/types';
 import { Header } from '../layouts/header/Header';
 import styles from '../features/favorites/styles/FavoritesPage.module.css';
 import { BackBtn } from '../shared/ui/back-btn/BackBtn';
-import { Loader } from '../shared/ui/loader/Loader';
+
 export const FavoritesPage = () => {
   const { data: events = [], isLoading } = useEvents({});
   const likedEvents = events?.filter((event: EventType) => event.likedByUser);
-
-  if (isLoading) return <Loader />;
 
   return (
     likedEvents && (
