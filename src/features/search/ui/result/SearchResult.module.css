@@ -20,3 +20,15 @@
 .results li:hover {
   background-color: var(--color-primary-light-hover);
 }
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1rem;
+  color: var(--color-primary-dark);
+  padding: 1rem;
+}
+.icon {
+  font-size: 2rem;
+}

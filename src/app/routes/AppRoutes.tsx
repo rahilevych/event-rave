@@ -7,6 +7,7 @@ import { RegistrationPage } from '../../pages/RegistrationPage';
 import { ProfilePage } from '../../pages/ProfilePage';
 import { EventsPage } from '../../pages/EventsPage';
 import { EventPage } from '../../pages/EventPage';
+import { FavoritesPage } from '../../pages/FavoritesPage';
 
 export const AppRoutes = () => {
   return (
@@ -21,6 +22,14 @@ export const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <ProfilePage />
+          </ProtectedRoute>
+        }
+      ></Route>
+      <Route
+        path="favorites"
+        element={
+          <ProtectedRoute>
+            <FavoritesPage />
           </ProtectedRoute>
         }
       ></Route>

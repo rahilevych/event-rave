@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.main {
+  width: 100%;
+  flex: 1;
+  margin-top: var(--height-header);
+  margin-bottom: 50px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 80px;
+  height: auto;
+  padding: 2rem 0;
+  border-bottom: 2px solid var(--color-border-dark);
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.header h2 {
+  color: var(--color-primary-light);
+  font-size: 2rem;
+}
+@media (max-width: 768px) {
+  .header {
+    min-height: 100px;
+  }
+}

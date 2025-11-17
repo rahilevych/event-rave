@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import { BeatLoader } from 'react-spinners';
+import { BounceLoader } from 'react-spinners';
 
 const override: CSSProperties = {
   display: 'block',
@@ -14,7 +14,7 @@ type LoaderProps = {
 
 export const Loader = ({
   color = 'rgb(146, 86, 155)',
-  size = 15,
+  size = 30,
 }: LoaderProps) => {
   return (
     <div
@@ -25,7 +25,7 @@ export const Loader = ({
         height: '200px',
       }}
     >
-      <BeatLoader
+      <BounceLoader
         color={color}
         loading={true}
         cssOverride={{ ...override, borderColor: color }}
