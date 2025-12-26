@@ -4,6 +4,7 @@ import { EventSlider } from '../../ui/slider/EventSlider';
 import { useNavigate } from 'react-router-dom';
 import { EventSectionSkeleton } from './EventSectionSkeleton';
 import { useEvents } from '../../hooks/useEvents';
+import { EventType } from '../../model/types';
 
 interface EventSectionProps {
   categoryId: number;
@@ -11,7 +12,9 @@ interface EventSectionProps {
 }
 
 export const EventsSection = ({ title, categoryId }: EventSectionProps) => {
-  const { data: events, isLoading } = useEvents({ categoryId: categoryId });
+  const { data, isLoading } = useEvents({ categoryId: categoryId, limit: 5 });
+  const events: EventType[] = data?.pages.flat() ?? [];
+
   const navigate = useNavigate();
 
   const handleSeeAllClick = () => {

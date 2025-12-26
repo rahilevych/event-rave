@@ -6,16 +6,24 @@ export default class EventService {
   static async getEvents(params?: {
     categoryId?: number;
     searchText?: string;
+    limit?: number;
+    offset?: number;
+    onlyLiked?: boolean;
   }): Promise<AxiosResponse> {
     const query = new URLSearchParams();
 
     if (params?.categoryId)
       query.append('categoryId', params.categoryId.toString());
     if (params?.searchText) query.append('searchText', params.searchText);
+    if (params?.limit) query.append('limit', params.limit.toString());
+    if (params?.offset) query.append('offset', params.offset.toString());
+    if (params?.onlyLiked)
+      query.append('onlyLiked', params?.onlyLiked.toString());
 
     const url = query.toString() ? `/events?${query.toString()}` : '/events';
     return api.get(url);
   }
+
   static async getEvent(id: number): Promise<AxiosResponse> {
     return api.get(`/events/${id}`);
   }
