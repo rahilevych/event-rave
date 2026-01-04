@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AuthResponse } from '../../features/auth/model/AuthResponse';
+import { refreshAccessToken } from '../lib/refreshAccessToken';
 
 export const API_URL = import.meta.env.VITE_API_URL;
 //export const API_URL = import.meta.env.VITE_API_URL_LOCAL;
@@ -36,19 +36,13 @@ api.interceptors.response.use(
 
       if (statusCode === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
-        try {
-          const response = await axios.post<AuthResponse>(
-            `${API_URL}/auth/refresh`,
-            {},
-            { withCredentials: true },
-          );
-          localStorage.setItem('token', response.data.token);
-          return api.request(originalRequest);
-        } catch (error) {
-          console.error(
-            'Token refresh failed, unauthorized access - redirecting to login',
-            error,
-          );
+
+        const newAccessToken = await refreshAccessToken();
+        if (newAccessToken) {
+          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+          return api(originalRequest);
+        } else {
+          window.location.href = '/login';
         }
       } else if (statusCode === 500) {
         console.error('Server error-try again later');
