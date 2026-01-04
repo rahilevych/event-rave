@@ -47,7 +47,7 @@ export const useEvents = ({
       return res.data;
     },
     getNextPageParam: (lastPage, allPages) => {
-      if (!lastPage || lastPage.length < limit) return undefined; // больше страниц нет
+      if (!lastPage || lastPage.length < limit) return undefined;
       return allPages.length * limit;
     },
     initialPageParam: 0,

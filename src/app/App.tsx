@@ -1,16 +1,14 @@
 import '../shared/styles/global.css';
 import { useEffect } from 'react';
-
 import { AppRoutes } from './routes/AppRoutes';
-import { useAuth } from '../features/auth/hooks/useAuth';
+
+import { useAuthStore } from '../features/auth/model/AuthStore';
 
 function App() {
-  let refreshCalled = false;
-  const { checkAuth } = useAuth();
   useEffect(() => {
-    if (!refreshCalled) {
-      refreshCalled = true;
-      checkAuth.mutate();
+    const token = localStorage.getItem('token');
+    if (token) {
+      useAuthStore.getState().setIsAuth(true);
     }
   }, []);
 
