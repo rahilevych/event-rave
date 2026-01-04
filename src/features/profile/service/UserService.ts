@@ -11,7 +11,7 @@ export default class UserService {
     return api.patch(`/users/${id}`, data);
   }
 
-  static async getUser(id: number): Promise<AxiosResponse<UpdateUserResponse>> {
-    return api.get(`/users/${id}`, {});
+  static async getUser(): Promise<AxiosResponse<UpdateUserResponse>> {
+    return api.get(`/users/me`);
   }
 }

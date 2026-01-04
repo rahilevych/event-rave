@@ -10,7 +10,7 @@ import { FormField } from '../../../../shared/ui/form-field/FormField';
 import { Button } from '../../../../shared/ui/Button/Button';
 import { LoginData, loginSchema } from '../../schemas/loginSchema';
 
-import { useAuth } from '../../hooks/useAuth';
+import { useLogin } from '../../hooks/useLogin';
 
 export const LoginForm = () => {
   const {
@@ -18,12 +18,12 @@ export const LoginForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginData>({ resolver: zodResolver(loginSchema) });
-  const { login } = useAuth();
+  const { mutate: login } = useLogin();
   const navigate = useNavigate();
 
   const onSubmit = async (data: LoginData) => {
     try {
-      await login.mutateAsync({ email: data.email, password: data.password });
+      login({ email: data.email, password: data.password });
       navigate('/', { replace: true });
     } catch (error) {
       console.error('Login error', error);

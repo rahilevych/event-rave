@@ -6,9 +6,27 @@ import styles from '../features/home/styles/HomePage.module.css';
 import { useCategories } from '../features/category/hooks/useCategories';
 import { Loader } from '../shared/ui/loader/Loader';
 import { ErrorState } from '../shared/ui/error-state/ErrorState';
+import { LazyLoader } from '../shared/ui/loader/LazyLoader';
+import { useInfiniteScroll } from '../shared/hooks/useInfiniteScroll';
+import { useRef } from 'react';
 
 export const HomePage = () => {
-  const { data: categories, isError, isLoading } = useCategories();
+  const {
+    data: categories,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isError,
+    isLoading,
+  } = useCategories(1);
+
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+
+  useInfiniteScroll({
+    ref: loadMoreRef,
+    fetchNextPage: fetchNextPage,
+    hasNextPage: hasNextPage && !isFetchingNextPage,
+  });
 
   if (isLoading)
     return (
@@ -16,24 +34,30 @@ export const HomePage = () => {
         <Loader />
       </div>
     );
-  console.log(isError);
+
   return (
     <div className="wrapper">
       <Header />
       <main className={styles.main}>
         <Hero />
+
         <section className={styles.section}>
           {isError ? (
             <ErrorState errorNotification="Fail to load events. Try again later" />
           ) : (
-            categories?.map((category) => (
-              <EventsSection
-                key={category.id}
-                title={category.name}
-                categoryId={category.id}
-              />
-            ))
+            categories?.pages.map((page) =>
+              page.map((category) => (
+                <EventsSection
+                  key={category.id}
+                  title={category.name}
+                  categoryId={category.id}
+                />
+              )),
+            )
           )}
+          {hasNextPage && <div ref={loadMoreRef} style={{ height: 1 }} />}
+
+          {isFetchingNextPage && <LazyLoader />}
         </section>
       </main>
       <Footer />

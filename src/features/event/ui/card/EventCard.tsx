@@ -5,7 +5,7 @@ import styles from './EventCard.module.css';
 import { LikeButton } from '../../../favorites/ui/like-btn/LikeButton';
 
 import { EventType } from '../../model/types';
-
+import { motion } from 'framer-motion';
 interface EventCardProps {
   card: EventType;
 }
@@ -18,7 +18,11 @@ export const EventCard = ({ card }: EventCardProps) => {
 
   return (
     card && (
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
         className={styles.card}
         data-testid="event-card"
         onClick={handleCardClick}
@@ -36,7 +40,7 @@ export const EventCard = ({ card }: EventCardProps) => {
           <p className={styles.price}>{Math.floor(card.price)} $</p>
           <p className={styles.organizer}>{card.organizer}</p>
         </div>
-      </div>
+      </motion.div>
     )
   );
 };

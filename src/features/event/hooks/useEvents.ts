@@ -1,10 +1,17 @@
-import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
+import {
+  useQuery,
+  useQueryClient,
+  useMutation,
+  useInfiniteQuery,
+} from '@tanstack/react-query';
 import { EventType } from '../model/types';
 import EventService from '../service/EventService';
 
 interface UseEventsParams {
   categoryId?: number;
   searchText?: string;
+  onlyLiked?: boolean;
+  limit?: number;
 }
 
 export const useEvent = (id: number) => {
@@ -20,27 +27,42 @@ export const useEvent = (id: number) => {
   });
 };
 
-export const useEvents = ({ categoryId, searchText }: UseEventsParams) => {
-  return useQuery<EventType[]>({
-    queryKey: ['events', categoryId ?? 0, searchText ?? ''],
-    queryFn: async () => {
-      const res = await EventService.getEvents({ categoryId, searchText });
+export const useEvents = ({
+  categoryId,
+  searchText,
+  onlyLiked,
+  limit = 1,
+}: UseEventsParams) => {
+  return useInfiniteQuery({
+    queryKey: ['events', categoryId ?? 0, searchText ?? '', onlyLiked, limit],
+    queryFn: async ({ pageParam = 0 }: { pageParam?: number }) => {
+      const res = await EventService.getEvents({
+        categoryId,
+        searchText,
+        onlyLiked,
+        offset: pageParam,
+        limit,
+      });
 
       return res.data;
     },
-    staleTime: 5 * 60 * 1000,
+    getNextPageParam: (lastPage, allPages) => {
+      if (!lastPage || lastPage.length < limit) return undefined;
+      return allPages.length * limit;
+    },
+    initialPageParam: 0,
   });
 };
 
-export const useToggleLike = () => {
+export const useToggleLike = (eventId: number) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (eventId: number) => {
+    mutationFn: async () => {
       await EventService.toggleLike(eventId);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['events'] });
-      queryClient.invalidateQueries({ queryKey: ['event'] });
+      queryClient.invalidateQueries({ queryKey: ['event', eventId] });
     },
   });
 };

@@ -5,11 +5,14 @@ import { FiltersSection } from '../features/event/components/filters/FiltersSect
 import { EventsList } from '../features/event/components/events-list/EventsList';
 import { useParams } from 'react-router-dom';
 import { EventsHeader } from '../features/event/components/events-header/EventsHeader';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { FilterKey } from '../features/event/constants/constatnts';
 import { CalendarModal } from '../features/event/components/calendar-modal/CalendarModal';
 import { useEvents } from '../features/event/hooks/useEvents';
+import { useInfiniteScroll } from '../shared/hooks/useInfiniteScroll';
+import { Loader } from '../shared/ui/loader/Loader';
+import { EventType } from '../features/event/model/types';
 
 export const EventsPage = () => {
   const [activeFilter, setActiveFilter] = useState<FilterKey | 'all'>('all');
@@ -17,11 +20,27 @@ export const EventsPage = () => {
   const { categoryId } = useParams();
   const parsedCategoryId = Number(categoryId);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const { data: events, isLoading } = useEvents({
-    categoryId: parsedCategoryId,
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage, isLoading } =
+    useEvents({
+      categoryId: parsedCategoryId,
+      limit: 10,
+    });
+  const events: EventType[] = data?.pages.flat() ?? [];
+
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+
+  useInfiniteScroll({
+    ref: loadMoreRef,
+    fetchNextPage: fetchNextPage,
+    hasNextPage: hasNextPage && !isFetchingNextPage,
   });
 
-  if (isLoading) return <p>loading</p>;
+  if (isLoading)
+    return (
+      <div className={styles.loader}>
+        <Loader />
+      </div>
+    );
 
   return (
     events && (
@@ -50,7 +69,12 @@ export const EventsPage = () => {
                 }}
               />
             )}
-            <EventsList loading={isLoading} events={events} />
+            <EventsList
+              loading={isLoading}
+              loadingMore={isFetchingNextPage}
+              events={events}
+            />
+            {hasNextPage && <div ref={loadMoreRef} style={{ height: 1 }} />}
           </div>
         </main>
 

@@ -6,8 +6,11 @@ export default class CategoryService {
   static async getCategory(id: number): Promise<AxiosResponse> {
     return api.get(`/categories/${id}`);
   }
-  static async getCategories(): Promise<AxiosResponse> {
-    return api.get(`/categories`);
+  static async getCategories(
+    skip = 0,
+    take = 1,
+  ): Promise<AxiosResponse<Category[]>> {
+    return api.get(`/categories?skip=${skip}&take=${take}`);
   }
   static async updateCategory(
     id: number,

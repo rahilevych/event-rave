@@ -1,16 +1,17 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { UserForm, userSchema } from '../../schemas/userSchema';
-import { useUserStore } from '../../model/UserStore';
+
 import { Button } from '../../../../shared/ui/Button/Button';
 import { FormField } from '../../../../shared/ui/form-field/FormField';
 import styles from './ProfileForm.module.css';
-import { useUser } from '../../../auth/hooks/useUser';
+
+import { useGetUser } from '../../../auth/hooks/useGetUser';
+import { useUpdateUser } from '../../../auth/hooks/useUpdateUser';
 
 export const ProfileForm = ({ onCancel }: { onCancel: () => void }) => {
-  const user = useUserStore((state) => state.user);
-  const setUser = useUserStore((state) => state.setUser);
-  const { updateUser } = useUser();
+  const { data: user } = useGetUser();
+  const { mutate: updateUser } = useUpdateUser();
   const {
     register,
     handleSubmit,
@@ -30,8 +31,7 @@ export const ProfileForm = ({ onCancel }: { onCancel: () => void }) => {
       role: user.role,
     };
 
-    setUser({ ...updatedData });
-    await updateUser.mutateAsync({ id: user.id, user: updatedData });
+    updateUser({ id: user.id, user: updatedData });
     onCancel();
   };
   return (

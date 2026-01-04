@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { Category } from '../model/types';
 import CategoryService from '../service/CategoryService';
 
@@ -13,14 +13,17 @@ export const useCategory = (id: number) => {
     staleTime: 5 * 60 * 1000,
   });
 };
-export const useCategories = () => {
-  return useQuery<Category[]>({
-    queryKey: ['categories'],
-    queryFn: async () => {
-      const res = await CategoryService.getCategories();
-
+export const useCategories = (take: number) => {
+  return useInfiniteQuery({
+    queryKey: ['categories', take],
+    queryFn: async ({ pageParam = 0 }: { pageParam?: number }) => {
+      const res = await CategoryService.getCategories(pageParam, take);
       return res.data;
     },
-    staleTime: 5 * 60 * 1000,
+    getNextPageParam: (lastPage, allPages) => {
+      if (!lastPage || lastPage.length === 0) return undefined;
+      return allPages.length;
+    },
+    initialPageParam: 0,
   });
 };
