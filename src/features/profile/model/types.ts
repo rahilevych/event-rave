@@ -6,7 +6,12 @@ export interface SidebarItem {
 
 export interface User {
   id: number;
+  email: string;
+  fullName: string;
+  role: string;
+}
+export interface UpdatedUser {
+  id: number;
   email?: string;
   fullName?: string;
-  role?: string;
 }

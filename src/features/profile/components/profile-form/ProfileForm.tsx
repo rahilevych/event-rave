@@ -22,13 +22,11 @@ export const ProfileForm = ({ onCancel }: { onCancel: () => void }) => {
   });
 
   const onSubmit = async (values: UserForm) => {
-    console.log('values', values);
     if (!user) return;
     const updatedData = {
       id: user.id,
       fullName: values.fullName,
       email: values.email,
-      role: user.role,
     };
 
     updateUser({ id: user.id, user: updatedData });

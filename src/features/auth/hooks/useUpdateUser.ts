@@ -1,22 +1,22 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { User } from '../../profile/model/types';
+import { UpdatedUser } from '../../profile/model/types';
 import UserService from '../../profile/service/UserService';
 
 export const useUpdateUser = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (data: { id: number; user: Partial<User> }) => {
+    mutationFn: async (data: { id: number; user: UpdatedUser }) => {
       const res = await UserService.updateUser(data.id, data.user);
       return res.data.user;
     },
     onMutate: async (userData) => {
       await queryClient.cancelQueries({ queryKey: ['currentUser'] });
       const previousUserData = queryClient.getQueryData(['currentUser']);
-      const { ...newUserData } = userData;
+
       if (previousUserData) {
-        const optimisticUserData: User = {
+        const optimisticUserData: UpdatedUser = {
           ...previousUserData,
-          ...newUserData,
+          ...userData.user,
         };
         queryClient.setQueryData(['currentUser'], optimisticUserData);
       }
