@@ -6,12 +6,14 @@ import { SearchResult } from '../../ui/result/SearchResult';
 import { Search } from '../../ui/search/Search';
 import { createPortal } from 'react-dom';
 import { useEvents } from '../../../event/hooks/useEvents';
+import { EventType } from '../../../event/model/types';
 
 export const SearchSection = () => {
   const [query, setQuery] = useState('');
   const [showResults, setShowResults] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { data: events, isLoading } = useEvents({ searchText: query });
+  const { data, isLoading } = useEvents({ searchText: query, limit: 5 });
+  const events: EventType[] = data?.pages.flat() ?? [];
 
   useClickOutside(sectionRef, () => setShowResults(false));
 
