@@ -1,16 +1,17 @@
 import { Button } from '../../../../shared/ui/Button/Button';
 import { Loader } from '../../../../shared/ui/loader/Loader';
 import { UserImg } from '../../../../shared/ui/user-img/UserImg';
-import { useUserStore } from '../../model/UserStore';
+import { useGetUser } from '../../../auth/hooks/useGetUser';
+
 import styles from './ProfileData.module.css';
 
 interface ProfileDataProps {
   onEdit: () => void;
 }
 export const ProfileData = ({ onEdit }: ProfileDataProps) => {
-  const user = useUserStore((state) => state.user);
+  const { data: user, isPending } = useGetUser();
 
-  if (!user) {
+  if (isPending) {
     return <Loader />;
   }
   return (
