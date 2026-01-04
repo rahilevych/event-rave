@@ -2,9 +2,9 @@ import { MdSearch } from 'react-icons/md';
 import { EventType } from '../../model/types';
 import { EventCard } from '../../ui/card/EventCard';
 import styles from './EventsList.module.css';
-
 import { EventsListSkeleton } from './EventsListSkeleton';
 import { LazyLoader } from '../../../../shared/ui/loader/LazyLoader';
+
 interface EventListProps {
   events: EventType[];
   loading?: boolean;

@@ -23,7 +23,7 @@ export const EventsPage = () => {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage, isLoading } =
     useEvents({
       categoryId: parsedCategoryId,
-      limit: 5,
+      limit: 10,
     });
   const events: EventType[] = data?.pages.flat() ?? [];
 

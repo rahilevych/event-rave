@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { EventSectionSkeleton } from './EventSectionSkeleton';
 import { useEvents } from '../../hooks/useEvents';
 import { EventType } from '../../model/types';
+import { motion } from 'framer-motion';
 
 interface EventSectionProps {
   categoryId: number;
@@ -24,7 +25,13 @@ export const EventsSection = ({ title, categoryId }: EventSectionProps) => {
 
   return (
     events && (
-      <section className={`container ${styles.events}`}>
+      <motion.section
+        className={`container ${styles.events}`}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         <header className={styles.header}>
           <Title text={title} className={styles.title} />
           <p onClick={handleSeeAllClick}>see all</p>
@@ -32,7 +39,7 @@ export const EventsSection = ({ title, categoryId }: EventSectionProps) => {
         <div className={styles.slider}>
           <EventSlider events={events} />
         </div>
-      </section>
+      </motion.section>
     )
   );
 };

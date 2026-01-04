@@ -18,12 +18,12 @@ export const LikeButton = ({
 }: LikeButtonProps) => {
   const navigate = useNavigate();
   const { isAuth } = useAuthStore.getState();
-  const toggleLike = useToggleLike();
+  const { mutate: toggleLike } = useToggleLike(eventId);
 
-  const handleLikeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLikeClick = (e: React.PointerEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     if (isAuth) {
-      toggleLike.mutate(eventId);
+      toggleLike();
     } else {
       navigate('/login');
     }
