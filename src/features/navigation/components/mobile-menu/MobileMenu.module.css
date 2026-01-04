@@ -5,8 +5,11 @@
   align-items: center;
   gap: 10px;
 }
-.icon {
+.icon,
+.search {
   font-size: 24px;
   color: var(--color-primary-light);
+}
+.search {
   pointer-events: none;
 }
