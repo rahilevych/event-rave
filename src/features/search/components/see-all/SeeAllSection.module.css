@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+  color: black;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+}
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-dark);
+}
+.query {
+  color: var(--color-text-accent-light);
+}
+.search-icon {
+  color: #888;
+}
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  cursor: pointer;
+}
