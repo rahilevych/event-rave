@@ -2,21 +2,17 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { Input } from '../../../../shared/ui/input/Input';
 import styles from './Search.module.css';
 import { FiSearch, FiX } from 'react-icons/fi';
+import { useSearchStore } from '../../model/SearchStore';
 
 type SearchProps = {
-  query: string;
-  setQuery: (value: string) => void;
   setShowResults: (value: boolean) => void;
   className?: string;
 };
-export const Search = ({
-  query,
-  setQuery,
-  setShowResults,
-  className,
-}: SearchProps) => {
+export const Search = ({ setShowResults, className }: SearchProps) => {
   const placeholders = ['concerts', 'museums', 'festivals'];
   const [index, setIndex] = useState(0);
+  const query = useSearchStore((state) => state.query);
+  const setQuery = useSearchStore((state) => state.setQuery);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
