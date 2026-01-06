@@ -7,9 +7,13 @@ import { Search } from '../../ui/search/Search';
 import { createPortal } from 'react-dom';
 import { useEvents } from '../../../event/hooks/useEvents';
 import { EventType } from '../../../event/model/types';
+import { useSearchStore } from '../../model/SearchStore';
+import { useLocation } from 'react-router-dom';
 
 export const SearchSection = () => {
-  const [query, setQuery] = useState('');
+  const location = useLocation();
+  const isSearchPage = location.pathname === '/search';
+  const query = useSearchStore((state) => state.query);
   const [showResults, setShowResults] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const { data, isLoading } = useEvents({ searchText: query, limit: 5 });
@@ -19,7 +23,9 @@ export const SearchSection = () => {
 
   return (
     <>
-      {query &&
+      {!isSearchPage &&
+        query &&
+        showResults &&
         createPortal(
           <div
             className={styles.overlay}
@@ -28,12 +34,8 @@ export const SearchSection = () => {
           document.body,
         )}
       <div className={styles['search-section']} ref={sectionRef}>
-        <Search
-          query={query}
-          setQuery={setQuery}
-          setShowResults={setShowResults}
-        />
-        {showResults && query && (
+        <Search setShowResults={setShowResults} />
+        {!isSearchPage && showResults && query && (
           <SearchResult loading={isLoading} results={events ?? []} />
         )}
       </div>

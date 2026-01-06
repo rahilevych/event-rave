@@ -8,6 +8,7 @@ import { ProfilePage } from '../../pages/ProfilePage';
 import { EventsPage } from '../../pages/EventsPage';
 import { EventPage } from '../../pages/EventPage';
 import { FavoritesPage } from '../../pages/FavoritesPage';
+import { AllSearchResultsPage } from '../../pages/AllSearchResultsPage';
 
 export const AppRoutes = () => {
   return (
@@ -15,7 +16,9 @@ export const AppRoutes = () => {
       <Route path="/" element={<HomePage />}></Route>
       <Route path="login" element={<LoginPage />}></Route>
       <Route path="registration" element={<RegistrationPage />}></Route>
+      <Route path="search" element={<AllSearchResultsPage />}></Route>
       <Route path="events/:categoryId" element={<EventsPage />}></Route>
+
       <Route path="event/:id" element={<EventPage />}></Route>
       <Route
         path="profile"
