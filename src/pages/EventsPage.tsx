@@ -24,7 +24,11 @@ export const EventsPage = () => {
     useEvents({
       categoryId: parsedCategoryId,
       limit: 10,
+      filter: activeFilter,
+      date:
+        activeFilter === 'calendar' ? (selectedDate ?? undefined) : undefined,
     });
+
   const events: EventType[] = data?.pages.flat() ?? [];
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null);

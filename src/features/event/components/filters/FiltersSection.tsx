@@ -19,8 +19,12 @@ export const FiltersSection = ({
   setSelectedDate,
 }: FiltersSectionProps) => {
   const handleFilterClick = (key: FilterKey) => {
+    if (key === 'calendar') {
+      onCalendarClick?.();
+      return;
+    }
     setActiveFilter(key);
-    if (key === 'calendar') onCalendarClick?.();
+    setSelectedDate(null);
   };
 
   return (

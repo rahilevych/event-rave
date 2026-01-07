@@ -12,6 +12,8 @@ interface UseEventsParams {
   searchText?: string;
   onlyLiked?: boolean;
   limit?: number;
+  filter?: string;
+  date?: Date;
 }
 
 export const useEvent = (id: number) => {
@@ -32,9 +34,19 @@ export const useEvents = ({
   searchText,
   onlyLiked,
   limit = 1,
+  filter = '',
+  date,
 }: UseEventsParams) => {
   return useInfiniteQuery({
-    queryKey: ['events', categoryId ?? 0, searchText ?? '', onlyLiked, limit],
+    queryKey: [
+      'events',
+      categoryId ?? 0,
+      searchText ?? '',
+      onlyLiked,
+      limit,
+      filter,
+      date,
+    ],
     queryFn: async ({ pageParam = 0 }: { pageParam?: number }) => {
       const res = await EventService.getEvents({
         categoryId,
@@ -42,6 +54,8 @@ export const useEvents = ({
         onlyLiked,
         offset: pageParam,
         limit,
+        filter,
+        date,
       });
 
       return res.data;

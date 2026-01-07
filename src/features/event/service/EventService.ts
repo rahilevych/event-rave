@@ -9,9 +9,10 @@ export default class EventService {
     limit?: number;
     offset?: number;
     onlyLiked?: boolean;
+    filter?: string;
+    date?: Date;
   }): Promise<AxiosResponse> {
     const query = new URLSearchParams();
-
     if (params?.categoryId)
       query.append('categoryId', params.categoryId.toString());
     if (params?.searchText) query.append('searchText', params.searchText);
@@ -19,7 +20,8 @@ export default class EventService {
     if (params?.offset) query.append('offset', params.offset.toString());
     if (params?.onlyLiked)
       query.append('onlyLiked', params?.onlyLiked.toString());
-
+    if (params?.filter) query.append('filter', params?.filter.toString());
+    if (params?.date) query.append('date', params?.date.toISOString());
     const url = query.toString() ? `/events?${query.toString()}` : '/events';
     return api.get(url);
   }
