@@ -1,6 +1,7 @@
 import { AuthLayout } from '../features/auth/components/auth-layout/AuthLayout';
 import { LoginForm } from '../features/auth/components/form/LoginForm';
 import styles from '../features/auth/styles/AuthPages.module.css';
+
 export const LoginPage = () => {
   const text = 'Welcome back! Please enter your details';
   const title = 'Sign in';

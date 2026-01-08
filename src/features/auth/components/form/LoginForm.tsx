@@ -1,15 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import styles from './AuthForm.module.css';
-
 import { useForm } from 'react-hook-form';
-
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { FormField } from '../../../../shared/ui/form-field/FormField';
 import { Button } from '../../../../shared/ui/Button/Button';
 import { LoginData, loginSchema } from '../../schemas/loginSchema';
-
 import { useLogin } from '../../hooks/useLogin';
 
 export const LoginForm = () => {
@@ -20,14 +16,15 @@ export const LoginForm = () => {
   } = useForm<LoginData>({ resolver: zodResolver(loginSchema) });
   const { mutate: login } = useLogin();
   const navigate = useNavigate();
-
   const onSubmit = async (data: LoginData) => {
-    try {
-      login({ email: data.email, password: data.password });
-      navigate('/', { replace: true });
-    } catch (error) {
-      console.error('Login error', error);
-    }
+    login(
+      { email: data.email, password: data.password },
+      {
+        onSuccess: () => {
+          navigate('/', { replace: true });
+        },
+      },
+    );
   };
   return (
     <form
