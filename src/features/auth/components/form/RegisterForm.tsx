@@ -18,20 +18,20 @@ const RegisterForm = () => {
   });
 
   const { mutate: registration } = useRegistration();
-
   const navigate = useNavigate();
-
   const onSubmit = async (data: RegisterData) => {
-    try {
-      registration({
+    registration(
+      {
         fullName: data.yourName,
         email: data.email,
         password: data.password,
-      });
-      navigate('/', { replace: true });
-    } catch (error) {
-      console.error('Login error', error);
-    }
+      },
+      {
+        onSuccess: () => {
+          navigate('/', { replace: true });
+        },
+      },
+    );
   };
 
   return (

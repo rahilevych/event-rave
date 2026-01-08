@@ -29,30 +29,35 @@ api.interceptors.response.use(
     return response;
   },
   async (error) => {
-    if (error.response) {
-      const statusCode = error.response.status;
-      const originalRequest = error.config;
-      const errorMessage = error.response.data.message || 'An error occurred';
+    if (!error.response) {
+      return Promise.reject(error);
+    }
 
-      if (statusCode === 401 && !originalRequest._retry) {
-        originalRequest._retry = true;
+    const statusCode = error.response.status;
+    const originalRequest = error.config;
+    const isAuthRequest =
+      originalRequest.url?.includes('/auth/login') ||
+      originalRequest.url?.includes('/auth/register');
+    if (isAuthRequest) {
+      return Promise.reject(error);
+    }
+    const token = localStorage.getItem('token');
 
+    if (statusCode === 401 && token && !originalRequest._retry) {
+      originalRequest._retry = true;
+      try {
         const newAccessToken = await refreshAccessToken();
         if (newAccessToken) {
           originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
           return api(originalRequest);
-        } else {
-          window.location.href = '/login';
         }
-      } else if (statusCode === 500) {
-        console.error('Server error-try again later');
-      } else {
-        console.error(`Error ${statusCode}: ${errorMessage}`);
+      } catch (refreshError) {
+        console.warn('Refresh failed', refreshError);
       }
-    } else if (error.request) {
-      console.error('Network error - check your internet connection');
-    } else {
-      console.error('Request error:', error.message);
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    } else if (statusCode === 500) {
+      console.error('Server error-try again later');
     }
     return Promise.reject(error);
   },
