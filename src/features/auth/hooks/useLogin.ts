@@ -29,6 +29,7 @@ export const useLogin = () => {
         toast.error('Network error, check your connection!');
         return;
       }
+      const data = error.response.data as { message?: string };
       switch (error.response?.status) {
         case 401:
           toast.error('Invalid login or password');
@@ -37,7 +38,7 @@ export const useLogin = () => {
           toast.error('Server unavaliable, try again later');
           break;
         default:
-          toast.error('An unexpected error occurred ');
+          toast.error(data.message || 'An unexpected error occurred');
       }
     },
   });

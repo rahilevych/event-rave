@@ -5,6 +5,7 @@
   border-radius: var(--border-radius);
   height: fit-content;
   padding: 2rem;
+  width: 100%;
 }
 .title {
   padding: 1rem;

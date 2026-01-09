@@ -86,3 +86,8 @@
   color: var(--color-text-dark);
   background-color: transparent;
 }
+@media (max-width: 425px) {
+  .content {
+    max-width: 320px;
+  }
+}

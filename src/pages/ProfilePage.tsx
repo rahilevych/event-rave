@@ -7,6 +7,7 @@ import { Section } from '../features/profile/components/section/Section';
 import { sidebarItems } from '../features/profile/constants/profileConstants';
 import { useWindowSize } from '../shared/hooks/useWindowSize';
 import { ProfileMenu } from '../features/profile/ui/profile-menu/ProfileMenu';
+import { DeleteSection } from '../features/profile/components/delete-section/DeleteSection';
 
 export const ProfilePage = () => {
   const text = 'Event Rave';
@@ -42,8 +43,10 @@ export const ProfilePage = () => {
               onTitleChange={setTitle}
             />
           )}
-
-          <Section component={infoComponent} title={title} />
+          <div className={styles.blocks}>
+            <Section component={infoComponent} title={title} />
+            {title === 'Profile' ? <DeleteSection /> : <></>}
+          </div>
         </main>
       </div>
     </div>

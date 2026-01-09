@@ -2,11 +2,15 @@ import { useState } from 'react';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import { Button } from '../../../../shared/ui/Button/Button';
 import styles from './DeleteDialog.module.css';
+import { useDeleteUser } from '../../../auth/hooks/useDeleteUser';
 const CONFIRM_TEXT = 'DELETE';
 
-export const DeleteDialog = ({ onConfirm }: { onConfirm: () => void }) => {
+export const DeleteDialog = () => {
   const [value, setValue] = useState('');
   const isApproved = value.trim().toUpperCase() === CONFIRM_TEXT;
+
+  const { mutate: deleteUser } = useDeleteUser();
+
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger asChild>
@@ -44,7 +48,7 @@ export const DeleteDialog = ({ onConfirm }: { onConfirm: () => void }) => {
               <Button
                 className={`${styles.button} ${styles.danger}`}
                 disabled={!isApproved}
-                onClick={onConfirm}
+                onClick={() => deleteUser()}
               >
                 Delete permanently
               </Button>
