@@ -8,11 +8,13 @@ export default class UserService {
     id: number,
     data: Partial<UpdatedUser>,
   ): Promise<AxiosResponse<UpdateUserResponse>> {
-    console.log(data);
     return api.patch(`/users/${id}`, data);
   }
 
   static async getUser(): Promise<AxiosResponse<UpdateUserResponse>> {
     return api.get(`/users/me`);
+  }
+  static async deleteUser(): Promise<AxiosResponse> {
+    return api.delete(`/users/me`);
   }
 }

@@ -1,0 +1,93 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem;
+
+  background: var(--color-background-nav);
+  border-radius: var(--border-radius);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  z-index: 101;
+}
+
+.content h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.content p {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+}
+.label > p {
+  color: var(--color-text-dark);
+}
+
+.label > input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-dark);
+  color: var(--color-text-dark);
+}
+
+.label > input:focus {
+  outline: none;
+  border-color: var(--color-error-dark) !important;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.danger {
+  background: var(--color-error-dark);
+  color: white;
+}
+
+.danger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn {
+  background-color: var(--color-error-dark);
+  padding: 0.75rem;
+  align-self: flex-end;
+}
+.button {
+  padding: 0.75rem;
+}
+.cancel {
+  color: var(--color-text-dark);
+  background-color: transparent;
+}
+@media (max-width: 425px) {
+  .content {
+    max-width: 320px;
+  }
+}
