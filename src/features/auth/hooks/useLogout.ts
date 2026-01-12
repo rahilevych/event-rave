@@ -18,6 +18,7 @@ export const useLogout = () => {
       queryClient.setQueryData(['auth', 'currentUser'], { isAuth: false });
       queryClient.removeQueries({ queryKey: ['currentUser'] });
       queryClient.invalidateQueries({ queryKey: ['events'] });
+      queryClient.invalidateQueries({ queryKey: ['liked-events'] });
       queryClient.clear();
       toast.success('Successfully logged out!');
       setIsAuth(false);
