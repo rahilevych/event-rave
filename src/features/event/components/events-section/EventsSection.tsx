@@ -28,8 +28,7 @@ export const EventsSection = ({ title, categoryId }: EventSectionProps) => {
       <motion.section
         className={`container ${styles.events}`}
         initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         <header className={styles.header}>

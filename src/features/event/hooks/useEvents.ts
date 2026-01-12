@@ -21,7 +21,7 @@ export const useEvent = (id: number) => {
     queryKey: ['event', id],
     queryFn: async () => {
       const res = await EventService.getEvent(id);
-      console.log(res.data);
+
       return res.data;
     },
     enabled: !!id,
@@ -32,7 +32,7 @@ export const useEvent = (id: number) => {
 export const useEvents = ({
   categoryId,
   searchText,
-  onlyLiked,
+
   limit = 1,
   filter = '',
   date,
@@ -42,7 +42,6 @@ export const useEvents = ({
       'events',
       categoryId ?? 0,
       searchText ?? '',
-      onlyLiked,
       limit,
       filter,
       date,
@@ -51,7 +50,7 @@ export const useEvents = ({
       const res = await EventService.getEvents({
         categoryId,
         searchText,
-        onlyLiked,
+
         offset: pageParam,
         limit,
         filter,
@@ -60,11 +59,33 @@ export const useEvents = ({
 
       return res.data;
     },
+
     getNextPageParam: (lastPage, allPages) => {
       if (!lastPage || lastPage.length < limit) return undefined;
       return allPages.length * limit;
     },
     initialPageParam: 0,
+    staleTime: 5 * (60 * 1000),
+  });
+};
+export const useLikedEvents = ({ limit = 1 }: UseEventsParams) => {
+  return useInfiniteQuery({
+    queryKey: ['liked-events', limit],
+    queryFn: async ({ pageParam = 0 }: { pageParam?: number }) => {
+      const res = await EventService.getLikedEvents({
+        offset: pageParam,
+        limit,
+      });
+
+      return res.data;
+    },
+
+    getNextPageParam: (lastPage, allPages) => {
+      if (!lastPage || lastPage.length < limit) return undefined;
+      return allPages.length * limit;
+    },
+    initialPageParam: 0,
+    staleTime: 5 * (60 * 1000),
   });
 };
 
@@ -75,6 +96,7 @@ export const useToggleLike = (eventId: number) => {
       await EventService.toggleLike(eventId);
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['liked-events'] });
       queryClient.invalidateQueries({ queryKey: ['events'] });
       queryClient.invalidateQueries({ queryKey: ['event', eventId] });
     },

@@ -8,7 +8,7 @@ export default class EventService {
     searchText?: string;
     limit?: number;
     offset?: number;
-    onlyLiked?: boolean;
+
     filter?: string;
     date?: Date;
   }): Promise<AxiosResponse> {
@@ -18,11 +18,25 @@ export default class EventService {
     if (params?.searchText) query.append('searchText', params.searchText);
     if (params?.limit) query.append('limit', params.limit.toString());
     if (params?.offset) query.append('offset', params.offset.toString());
-    if (params?.onlyLiked)
-      query.append('onlyLiked', params?.onlyLiked.toString());
+
     if (params?.filter) query.append('filter', params?.filter.toString());
     if (params?.date) query.append('date', params?.date.toISOString());
     const url = query.toString() ? `/events?${query.toString()}` : '/events';
+    return api.get(url);
+  }
+
+  static async getLikedEvents(params?: {
+    limit?: number;
+    offset?: number;
+  }): Promise<AxiosResponse> {
+    const query = new URLSearchParams();
+
+    if (params?.limit) query.append('limit', params.limit.toString());
+    if (params?.offset) query.append('offset', params.offset.toString());
+
+    const url = query.toString()
+      ? `/events/liked?${query.toString()}`
+      : '/events/liked';
     return api.get(url);
   }
 
@@ -39,7 +53,6 @@ export default class EventService {
     return api.post('/events', event);
   }
   static async toggleLike(eventId: number) {
-    console.log(eventId);
     return api.put(`/likes/${eventId}/toggle`);
   }
 }
