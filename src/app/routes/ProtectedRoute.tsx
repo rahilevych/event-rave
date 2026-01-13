@@ -7,7 +7,6 @@ interface ProtectedRoute {
 }
 export const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const isAuth = useAuthStore((state) => state.isAuth);
-  const token = localStorage.getItem('token');
 
-  return isAuth && token ? <>{children}</> : <Navigate to="/login" replace />;
+  return isAuth ? <>{children}</> : <Navigate to="/login" replace />;
 };

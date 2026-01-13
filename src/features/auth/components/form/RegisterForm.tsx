@@ -1,9 +1,7 @@
 import styles from './AuthForm.module.css';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-
 import { Button } from '../../../../shared/ui/Button/Button';
-import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import { FormField } from '../../../../shared/ui/form-field/FormField';
 import { RegisterData, registerSchema } from '../../schemas/registerSchema';
@@ -69,10 +67,6 @@ const RegisterForm = () => {
       <div className={styles.buttons}>
         <Button type="submit" className={styles.button} disabled={isSubmitting}>
           Sign Up
-        </Button>
-
-        <Button type="submit" className={styles.button} disabled={isSubmitting}>
-          <FcGoogle /> Sign Up with Google
         </Button>
 
         <p>or</p>

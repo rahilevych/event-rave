@@ -15,7 +15,6 @@ export const EventsList = ({
   loading,
   loadingMore,
 }: EventListProps) => {
-  console.log(events);
   return loading ? (
     <EventsListSkeleton />
   ) : (
