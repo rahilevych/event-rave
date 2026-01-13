@@ -17,6 +17,8 @@ export const OAuthSuccess = () => {
         setIsAuth(true);
         window.location.replace('/');
       } else {
+        toast.error('Something went wrong. Try again!');
+        setIsAuth(false);
         window.location.replace('/login');
       }
     };
