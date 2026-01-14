@@ -33,11 +33,11 @@
 .link {
   color: var(--color-primary-light);
 }
-@media (max-width: 425px) {
+@media (max-width: 625px) {
   .buttons {
     width: 100%;
   }
   .button {
-    width: 90%;
+    width: 100%;
   }
 }

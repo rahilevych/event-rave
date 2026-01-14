@@ -28,8 +28,8 @@
   border: 1px solid var(--color-primary-dark);
 }
 
-@media (max-width: 425px) {
+@media (max-width: 625px) {
   .label {
-    width: 90%;
+    width: 100%;
   }
 }

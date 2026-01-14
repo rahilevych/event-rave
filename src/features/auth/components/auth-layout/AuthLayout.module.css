@@ -2,12 +2,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 .content {
   display: flex;
   height: auto;
   width: fit-content;
   border-radius: var(--border-radius-block);
+  width: 100%;
 }
 .container {
   padding: 2rem 0;
@@ -43,6 +45,7 @@
 @media (max-width: 768px) {
   .container {
     width: 400px;
+    padding: 1.5rem;
   }
 }
 @media (max-width: 425px) {
@@ -53,6 +56,6 @@
     margin-top: 0.25rem;
   }
   .container {
-    width: 300px;
+    width: 100%;
   }
 }
