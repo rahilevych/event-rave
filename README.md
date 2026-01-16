@@ -1,69 +1,87 @@
-# React + TypeScript + Vite
+# 🕺 Event Rave — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Discovering events platform. This platform allows users to browse events, manage a personal wishlist, and features a robust authentication system.
 
-Currently, two official plugins are available:
+**[🌐 Live Demo](https://event-rave.vercel.app/)** | **[Backend Repository](https://github.com/rahilevych/event-rave-back)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+> [!NOTE]
+> The backend is hosted on a free Render instance. If the site feels slow to load initially, please wait a little bit for the server to "wake up" from its sleep state. Sometimes a manual page reload helps once the server is active.
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🖼️ Preview
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Home page
+<img width="1920" height="993" alt="home" src="https://github.com/user-attachments/assets/99d18d7d-be1c-46c6-9414-8013f2b9f42c" />
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Login page
+<img width="1920" height="993" alt="login" src="https://github.com/user-attachments/assets/4dc251da-fcc5-4d96-8958-2d7dbf33b52d" />
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Home page for logged in user
+<img width="1920" height="993" alt="loggedinUser" src="https://github.com/user-attachments/assets/120b7b0e-f8a9-4b02-be01-86caa3bc2679" />
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Profile page
+<img width="1920" height="993" alt="profile" src="https://github.com/user-attachments/assets/20b6939e-dd38-4ef7-b942-402e33ecf388" />
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Search
+<img width="1920" height="993" alt="search" src="https://github.com/user-attachments/assets/b043fc1b-0749-4330-95d6-64d1b68bd4a2" />
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Filering on categories page
+<img width="1920" height="993" alt="filtering by categories" src="https://github.com/user-attachments/assets/4bebc5e0-ee05-4be6-99e4-8b1fb445a5c1" />
+
+### Liked events
+<img width="1920" height="993" alt="wishList" src="https://github.com/user-attachments/assets/afdef725-d69d-492a-9c5d-5594961d53ac" />
+
+---
+
+## ✨ Features
+
+*  Browse events with an infinite scroll experience
+*  Search and filter events
+*  Save favorite events to your personal list
+*  Manage personal account info
+*  Sign up via traditional email/password or use **GitHub OAuth**.
+*  Fully optimized for Mobile, Tablet, and Desktop.
+
+## 🛠 Tech Stack
+
+* **Core:** React + TypeScript + Vite
+* **Zustand:** for local UI state
+* **TanStack Query:** for server-state management, caching, and infinite loading
+* **Architecture:** Feature-Sliced Design (FSD)
+* **Styling:** module styles
+
+## 🏗 Project Structure (FSD)
+The project follows the Feature-Sliced Design pattern:
+- `app/`: routes, app, etc.
+- `pages/`: pages.
+- `features/`: features (auth, like, profile etc. with their components, services, hooks, models)
+- `layouts/`:  header, footer etc
+- `shared/`: reusable UI components
+- `config/`: configuration files and constants.
+
+## 🚀 Getting Started
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/rahilevych/event-rave
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Configure Environment Variables:**
+    Create a `.env` file in the root:
+    ```env
+    VITE_API_URL=[your server url]
+    VITE_TARGET_OAUTH_URL=[https://[your server url ]/github-auth]
+    ```
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+## 🗺 What can be added
+- [ ] Stripe Payment Integration for ticket booking.
+- [ ] Email notifications for upcoming events.
+- [ ] Map integration to see event locations.
