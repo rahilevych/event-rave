@@ -2,8 +2,14 @@
 
 Discovering events platform. This platform allows users to browse events, manage a personal wishlist, and features a robust authentication system.
 
-**[🌐 Live Demo](https://event-rave.vercel.app/)** | **[Backend Repository](https://github.com/rahilevych/event-rave-back)**
-
+<p align="left">
+  <a href="https://event-rave.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/Live_Demo-🚀-blue?style=for-the-badge&logo=vercel" alt="Live Demo">
+  </a>
+  <a href="https://github.com/rahilevych/event-rave-back" target="_blank">
+    <img src="https://img.shields.io/badge/Backend_Repo-⚙️-lightgrey?style=for-the-badge&logo=github" alt="Backend">
+  </a>
+</p>
 
 > [!NOTE]
 > The backend is hosted on a free Render instance. If the site feels slow to load initially, please wait a little bit for the server to "wake up" from its sleep state. Sometimes a manual page reload helps once the server is active.
