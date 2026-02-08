@@ -17,7 +17,6 @@ export const HomePage = () => {
     hasNextPage,
     isFetchingNextPage,
     isError,
-    isLoading,
   } = useCategories(1);
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
@@ -28,12 +27,12 @@ export const HomePage = () => {
     hasNextPage: hasNextPage && !isFetchingNextPage,
   });
 
-  if (isLoading)
-    return (
-      <div className={styles.loader}>
-        <Loader />
-      </div>
-    );
+  // if (isLoading)
+  //   return (
+  //     <div className={styles.loader}>
+  //       <Loader />
+  //     </div>
+  //   );
 
   return (
     <div className="wrapper">
