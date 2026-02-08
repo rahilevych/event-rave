@@ -4,7 +4,6 @@ import { Footer } from '../layouts/footer/Footer';
 import { Header } from '../layouts/header/Header';
 import styles from '../features/home/styles/HomePage.module.css';
 import { useCategories } from '../features/category/hooks/useCategories';
-import { Loader } from '../shared/ui/loader/Loader';
 import { ErrorState } from '../shared/ui/error-state/ErrorState';
 import { LazyLoader } from '../shared/ui/loader/LazyLoader';
 import { useInfiniteScroll } from '../shared/hooks/useInfiniteScroll';
