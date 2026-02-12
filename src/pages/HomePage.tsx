@@ -4,11 +4,11 @@ import { Footer } from '../layouts/footer/Footer';
 import { Header } from '../layouts/header/Header';
 import styles from '../features/home/styles/HomePage.module.css';
 import { useCategories } from '../features/category/hooks/useCategories';
-import { Loader } from '../shared/ui/loader/Loader';
 import { ErrorState } from '../shared/ui/error-state/ErrorState';
 import { LazyLoader } from '../shared/ui/loader/LazyLoader';
 import { useInfiniteScroll } from '../shared/hooks/useInfiniteScroll';
 import { useRef } from 'react';
+import { EventSectionSkeleton } from '../features/event/components/events-section/EventSectionSkeleton';
 
 export const HomePage = () => {
   const {
@@ -17,6 +17,7 @@ export const HomePage = () => {
     hasNextPage,
     isFetchingNextPage,
     isError,
+    isPending,
   } = useCategories(1);
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
@@ -27,20 +28,38 @@ export const HomePage = () => {
     hasNextPage: hasNextPage && !isFetchingNextPage,
   });
 
-  // if (isLoading)
-  //   return (
-  //     <div className={styles.loader}>
-  //       <Loader />
-  //     </div>
-  //   );
-
   return (
     <div className="wrapper">
       <Header />
       <main className={styles.main}>
         <Hero />
-
         <section className={styles.section}>
+          {isPending && !categories ? (
+            <>
+              {Array.from({ length: 3 }).map((_, i) => (
+                <EventSectionSkeleton key={i} />
+              ))}
+            </>
+          ) : isError ? (
+            <ErrorState errorNotification="Fail to load events. Try again later" />
+          ) : (
+            categories?.pages.map((page) =>
+              page.map((category) => (
+                <EventsSection
+                  key={category.id}
+                  title={category.name}
+                  categoryId={category.id}
+                />
+              )),
+            )
+          )}
+
+          {hasNextPage && <div ref={loadMoreRef} style={{ height: 1 }} />}
+
+          {isFetchingNextPage && <LazyLoader />}
+        </section>
+
+        {/* <section className={styles.section}>
           {isError ? (
             <ErrorState errorNotification="Fail to load events. Try again later" />
           ) : (
@@ -57,7 +76,7 @@ export const HomePage = () => {
           {hasNextPage && <div ref={loadMoreRef} style={{ height: 1 }} />}
 
           {isFetchingNextPage && <LazyLoader />}
-        </section>
+        </section> */}
       </main>
       <Footer />
     </div>
